@@ -1,6 +1,6 @@
-<?php
+ <?php
 
-include("/var/www/html/cmds.txt");
+echo file_get_contents("/var/www/html/cmds.txt");
 
 $id = intval($_GET['id']);
 $sid = strval($id);
