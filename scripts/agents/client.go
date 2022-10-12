@@ -15,9 +15,10 @@ import (
 
 
 func main() {
-data := "Hello From Go"
-sEnc := b64.StdEncoding.EncodeToString([]byte(data))
 id := os.Args[1]
+data := "Hello From Agent "+ id +" Go"
+sEnc := b64.StdEncoding.EncodeToString([]byte(data))
+
 
 http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 _, err := http.Get(os.Args[2]+"/res.php?id="+id+"&res=" + sEnc )
