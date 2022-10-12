@@ -32,11 +32,15 @@ read file
 
 if [ "$file" = "cmds" ]; then
 echo "" > /var/www/html/cmds.txt
+sleep 2
+echo "Clearing cmds.txt"
 clear
 fi
 
 if [ "$file" = "res" ]; then
 echo "" > /var/www/html/res.txt
+sleep 2
+echo "Clearing res.txt"
 clear
 else
 echo "Unknown file"
@@ -44,5 +48,6 @@ fi
 
 else
 echo "Unknown cmd"
+sleep 2
 fi
 done
