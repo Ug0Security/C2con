@@ -10,7 +10,7 @@ modif res.txt et la logique de parse pour ajouter une action
 --action extract
 
 -action download
---ajout dossier pour upload
+-modif client py,go,ps1
 
 -modif Run_Cmd.sh gérer la modif
 -modif l'interface web gérer la modif
@@ -19,3 +19,7 @@ modif res.txt et la logique de parse pour ajouter une action
 secure l'interface web
 - decaller fichier res.txt et cmds.txt pour les rendre non reachable
 modif la logique de lecture pour l'interface web
+
+//
+secure up.php
+-check everything
