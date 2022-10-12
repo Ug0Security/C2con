@@ -1,10 +1,31 @@
+end=$((SECONDS+3))
+echo "Loading..."
+while [ $SECONDS -lt $end ];
+
+do for X in "[==D     8]" "[]8===D  []" "[] 8===D []" "[]  8===D[]" "[]   8===[]" "[D     8==]" "[=D     8=]" ; do echo -en "\b\b\b\b\b\b\b\b\b\b\b\b$X"; sleep 0.1; done; 
+
+done
 
 tmux new-session -s C2con-sess -n C2con -d
 tmux split-window -v
 tmux split-window -h
-tmux send-keys -t 1 "tail -f /var/www/html/res.txt" C-m
-tmux send-keys -t 2 "while true; do cat /var/www/html/ping.txt; sleep 5; clear; done" C-m
-tmux send-keys -t 0 "bash Run_Cmd.sh" C-m
+tmux split-window -v
+tmux send-keys -t 1 "while true;echo \"\"\"
++-+-+ +-+-+-+-+-+
+ |Z|e| |J|u|i|c|e|
+ +-+-+ +-+-+-+-+-+
+\"\"\"; do tail /var/www/html/res.txt 2>/dev/null; sleep 1; clear; done" C-m
+tmux send-keys -t 2 "clear;while true;echo \"\"\"
+ +-+-+-+-+
+ |p|i|n|g|
+ +-+-+-+-+
+\"\"\"; do cat /var/www/html/ping.txt; sleep 3; clear; done" C-m
+tmux send-keys -t 3 "clear;while true;echo \"\"\"
++-+-+-+-+-+
+ |T|a|s|k|s|
+ +-+-+-+-+-+
+\"\"\"; do tail  /var/www/html/cmds.txt 2>/dev/null; ; sleep 1; clear; done" C-m
+tmux send-keys -t 0 "clear;bash Run_Cmd.sh" C-m
 tmux select-pane -t 0
 tmux attach-session -t C2con-sess
 
