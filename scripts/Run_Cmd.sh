@@ -15,13 +15,13 @@ echo """
 echo "Action ?"
 read action
 
-if [ "$action" = "cmd" ]; then
+if [ "$action" = "run" ]; then
 echo "Agent ?"
 read agent
 echo "Ze Juice ?"
 read cmd
-echo "$agent:$cmd" >> /var/www/html/cmds.txt
-echo "Task to $agent => $cmd" >> /var/www/html/res.txt
+echo "$agent:$action:$cmd" >> /var/www/html/cmds.txt
+echo "Task to $agent => $action $cmd" >> /var/www/html/res.txt
 sleep 2
 clear
 
