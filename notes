@@ -1,0 +1,13 @@
+to do
+
+modif res.txt et la logique de parse pour ajouter une action
+-action run
+--exec command comme actuellement
+
+-action extract
+--ajout endpoint php pour upload
+--action extract
+
+-action download
+--ajout dossier pour upload
+
