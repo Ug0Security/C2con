@@ -13,7 +13,7 @@ do
 echo "Agent"
 read agent
 echo "Ze Juice"
-read agent
+read cmd
 echo "$agent:$cmd" >> /var/www/html/cmds.txt
 echo "Task to $agent => $cmd" >> /var/www/html/res.txt
 done
