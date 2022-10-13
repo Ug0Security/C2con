@@ -104,8 +104,8 @@ $up=(Invoke-RestMethod -Uri "$url/up.php?id=$id" -Method Post -ContentType "mult
 if ($act -eq "upload")
 {
 $urldl = ($cmd -split ':',5)[2,3]
+$urldl = ($urldl -join ":")
 
-$urldl = ($url -join ":")
 
 	if ([string]::IsNullOrWhiteSpace($urldl))
     {
