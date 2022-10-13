@@ -175,17 +175,9 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
     size, err := io.Copy(file, resp.Body)
     fmt.Println(size)
     defer file.Close()
-    
-     
 
-      
-      
-	
       }
-      
-      
-      
-      
+
 }
       }
 
