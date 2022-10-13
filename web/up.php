@@ -16,11 +16,13 @@ if ($_FILES["data"]["size"] > 500000) {
 
 
 if ($uploadOk == 0) {
+ echo "Not Ok";
+
 } else {
   if (move_uploaded_file($_FILES["data"]["tmp_name"] , $target_file)) {
   $file = 'res.txt';
   $current = file_get_contents($file);
-  $current .= "Agent ".$id." => File ".basename($_FILES["data"]["name"])." Saved to $target_file";
+  $current .= "Agent ".$id." => File ".basename($_FILES["data"]["name"])." Saved to $target_file".PHP_EOL;
   file_put_contents($file, $current);  
   } else {
   }
