@@ -34,9 +34,9 @@ $current .= "Last Ping - Agent ".$id." (Python) => ".$time.PHP_EOL;
 file_put_contents($file, $current);
 }
 
-if ($os == "P"){
+if ($os == "G"){
 $current = file_get_contents($file);
-$current .= "Last Ping - Agent ".$id." (Python) => ".$time.PHP_EOL;
+$current .= "Last Ping - Agent ".$id." (Go) => ".$time.PHP_EOL;
 file_put_contents($file, $current);
 }
  
