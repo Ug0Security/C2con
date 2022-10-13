@@ -8,9 +8,10 @@ modif res.txt et la logique de parse pour ajouter une action
 -action upload (upload file to target)
 --ajout dossier pour download
 --action upload
+--modif client sh,ps1,py,go
 
 -action download (extract file from target)
--modif client py,go
+-modif client go
 
 
 
