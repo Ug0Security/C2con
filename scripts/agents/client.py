@@ -51,8 +51,8 @@ while True:
 				
 				if act == "upload":
 					s = ":"
-					urldl = s.join({str(lines.split(":",4)[3]).strip(), str(lines.split(":",5)[2]).strip()})
-					
+					urldl = s.join({str(lines.split(":",5)[3]).strip(), str(lines.split(":",5)[2]).strip()})
+					print(urldl)
 					path =  str(lines.split(":",5)[-1]).strip()
 					messagedl = "Downloading "+ str(urldl) + " to "+ path
 					messagedl_bytes = messagedl.encode('ascii')
