@@ -1,17 +1,15 @@
-to do
+before running change apache private tmp file to false
+vim /lib/systemd/system/apache2.service
+systemctl daemon-reload
 
-//
 
--action upload (upload file to target)
---ajout dossier pour download
---action upload
---modif Run_cmds.sh
---modif client sh,ps1,py,go
+
+//to do//
+
 
 
 //
 secure l'interface web
-- decaller fichier res.txt et cmds.txt pour les rendre non reachable
 modif la logique de lecture pour l'interface web
 
 //
