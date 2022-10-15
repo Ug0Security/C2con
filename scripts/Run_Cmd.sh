@@ -28,6 +28,7 @@ clear
 elif [ "$action" = "create" ]; then
 echo "What ?"
 read what
+
 if [ "$what" = "agent" ]; then
 echo "Type (shell/python/go/powershell) ?"
 read type
@@ -43,11 +44,9 @@ echo "Creating agent"
 bash create_agent.sh  $type $filename $endpoint $mode_param $resp_param
 sleep 2
 clear
-fi
 
 
-if [ "$what" = "listener" ]; then
-echo "Creating listener"
+elif [ "$what" = "listener" ]; then
 echo "Endpoint ?"
 read endpoint
 echo "Mode Param ?"
@@ -56,6 +55,11 @@ echo "Reponse Param ?"
 read resp_param
 echo "Creating and deploying listener"
 bash create_listener.sh $endpoint $mode_param $resp_param
+sleep 2
+clear
+
+else
+echo "Create agent or listener"
 sleep 2
 clear
 fi
