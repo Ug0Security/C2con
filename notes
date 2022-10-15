@@ -1,8 +1,19 @@
-before running change apache private tmp file to false
+--[Before running]--
+
+-- Change apache private tmp file to false
 vim /lib/systemd/system/apache2.service
 systemctl daemon-reload
 
+-- Chown tmp files (or C2 wont be able to write)
+chown root /tmp/C2CON-res.txt
+chown root /tmp/C2CON-res.txt
 
+-- Copy web folder to /var/www/html
+
+cp web/ /var/www/html -r 
+
+-- Chmod upload folder
+chmod 777 uploads
 
 //to do//
 
