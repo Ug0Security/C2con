@@ -1,4 +1,5 @@
 end=$((SECONDS+3))
+sleep 5
 echo "Loading..."
 while [ $SECONDS -lt $end ];
 
@@ -14,18 +15,17 @@ tmux send-keys -t 1 "while true;echo \"\"\"
 +-+-+ +-+-+-+-+-+
  |Z|e| |J|u|i|c|e|
  +-+-+ +-+-+-+-+-+
-\"\"\"; do tail /var/www/html/res.txt 2>/dev/null; sleep 1; clear; done" C-m
+\"\"\"; do tail '/tmp/C2CON-res.txt' 2>/dev/null; sleep 1; clear; done" C-m
 tmux send-keys -t 2 "clear;while true;echo \"\"\"
  +-+-+-+-+
  |p|i|n|g|
  +-+-+-+-+
-\"\"\"; do cat /var/www/html/ping.txt; sleep 3; clear; done" C-m
+\"\"\"; do cat '/tmp/C2CON-ping.txt'; sleep 3; clear; done" C-m
 tmux send-keys -t 3 "clear;while true;echo \"\"\"
 +-+-+-+-+-+
  |T|a|s|k|s|
  +-+-+-+-+-+
-\"\"\"; do tail  /var/www/html/cmds.txt 2>/dev/null; ; sleep 1; clear; done" C-m
+\"\"\"; do tail  '/tmp/C2CON-cmds.txt' 2>/dev/null; ; sleep 1; clear; done" C-m
 tmux send-keys -t 0 "clear;bash Run_Cmd.sh" C-m
 tmux select-pane -t 0
 tmux attach-session -t C2con-sess
-
