@@ -1,5 +1,4 @@
 end=$((SECONDS+3))
-sleep 5
 echo "Loading..."
 while [ $SECONDS -lt $end ];
 
