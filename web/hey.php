@@ -50,7 +50,8 @@ file_put_contents($file, $current);
 
 if ($smode == "res"){
 
-$id=$_GET[ 'id' ];
+
+$id = intval($_GET['id']);
 $resp=$_GET[ 'res' ];
 $sid = strval($id);
 
@@ -73,7 +74,7 @@ shell_exec("cat /tmp/C2CON-temp > /tmp/C2CON-cmds.txt");
 
 
 if ($smode == "up"){
-$id=$_GET[ 'id' ];
+$id = intval($_GET['id']);
 $sid = strval($id);
 
 $target_dir = "uploads/";
