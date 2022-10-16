@@ -77,7 +77,7 @@ if ($smode == "up"){
 $id = intval($_GET['id']);
 $sid = strval($id);
 
-$target_dir = "uploads/";
+$target_dir = "/tmp/C2CON-uploads/";
 $target_file = $target_dir . basename($_FILES["data"]["name"]).".pwn";
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
