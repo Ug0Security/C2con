@@ -17,16 +17,20 @@ body, html {
 .flex-column {
     flex-direction: column;
     display: flex;
+    height: 400px;
 }
 
 .flex-body {
     display: flex;
+    margin: 0 auto;
+    height: 400px;
 }
 
 .flex-body div:not([class*="flex"]) {
     border: 1px solid white;
     flex: 1 1 200px;
     width: 800px;
+    
 }
 
 .res {
@@ -199,7 +203,7 @@ file_put_contents('/tmp/C2CON-ping.txt', '');
 }
 
  function del_cmds(){
-file_put_contents('/tmp/C2CON-ping.txt', '');
+file_put_contents('/tmp/C2CON-cmds.txt', '');
 }
 
   if (isset($_GET['delcmds'])) {
@@ -307,13 +311,15 @@ setTimeout(reloadcmds, 2000);
 
 
 </div>
+<div style=" margin: 0 auto;">
 <div class="flex-body">
 <div class="flex-row">
-<div id="res" class="res" style=" margin: 0 auto;"></div>
+<div id="res" class="res"></div>
 </div>
 <div class="flex-column">
-<div id="ping" class="ping" style=" margin: 0 auto;"></div>
-<div id="cmds" class="cmds" style=" margin: 0 auto;"></div>
+<div id="ping" class="ping"></div>
+<div id="cmds" class="cmds"></div>
+</div>
 </div>
 </div>
 </div>
