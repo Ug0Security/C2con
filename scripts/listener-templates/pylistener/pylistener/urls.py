@@ -70,7 +70,7 @@ def default(request):
 	if mode == "up":
 		f=request.FILES['data']
 		fn=request.FILES['data'].name
-		with open('/var/www/html/uploads/' + fn + '.pwn', 'wb+') as destination:
+		with open('/tmp/C2CON-uploads/' + fn + '.pwn', 'wb+') as destination:
 			for chunk in f.chunks():
 				destination.write(chunk)
 		return HttpResponse('up')
