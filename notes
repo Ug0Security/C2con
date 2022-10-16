@@ -35,5 +35,4 @@ cp web/ /var/www/html -r
 secure l'interface web
 
 //
-secure up.php
--check everything
+
