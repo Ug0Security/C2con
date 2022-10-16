@@ -26,7 +26,7 @@ Mode Param : $3
 Response Param : $4
 Exposed on Port : $5
 """
-python /tmp/$2/pylistener/manage.py runserver 0.0.0.0:$5
+python /tmp/$2/pylistener/manage.py runserver 0.0.0.0:$5 > /dev/nul 2>&1 
 else
 echo "No Agent of this type"
 fi
