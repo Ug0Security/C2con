@@ -19,12 +19,10 @@ chmod 777  /tmp/C2CON-temping
 mkdir /tmp/C2CON-uploads
 chmod 777  /tmp/C2CON-uploads/
 
--- Copy web folder to /var/www/html if you plan to use upload function or web interface
+-- Copy web folder to /var/www/html  web interface
 
 cp web/ /var/www/html -r 
 
--- Chmod upload folder
-chmod 777 uploads
 
 
 
