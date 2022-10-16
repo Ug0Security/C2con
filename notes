@@ -3,6 +3,7 @@
 -- Change apache private tmp file to false if you plan to use the php listener
 vim /lib/systemd/system/apache2.service
 systemctl daemon-reload
+service apache restart
 
 -- create and chmod tmp files and uploads folder (or C2/agents/listeners wont be able to write)
 
@@ -32,7 +33,6 @@ cp web/ /var/www/html -r
 
 //
 secure l'interface web
-modif la logique de lecture pour l'interface web
 
 //
 secure up.php
