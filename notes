@@ -1,10 +1,10 @@
 --[Before running]--
 
--- Change apache private tmp file to false
+-- Change apache private tmp file to false if you plan to use the php listener
 vim /lib/systemd/system/apache2.service
 systemctl daemon-reload
 
--- create and chmod tmp files (or C2/listeners wont be able to write)
+-- create and chmod tmp files and uploads folder (or C2/agents/listeners wont be able to write)
 
 touch /tmp/C2CON-cmds.txt
 chmod 777 /tmp/C2CON-cmds.txt
@@ -16,17 +16,21 @@ touch /tmp/C2CON-temp
 chmod 777  /tmp/C2CON-temp
 touch /tmp/C2CON-temping
 chmod 777  /tmp/C2CON-temping
+mkdir /tmp/C2CON-uploads
+chmod 777  /tmp/C2CON-uploads/
 
--- Copy web folder to /var/www/html
+-- Copy web folder to /var/www/html if you plan to use upload function or web interface
 
 cp web/ /var/www/html -r 
 
 -- Chmod upload folder
 chmod 777 uploads
 
+
+
 //to do//
 
-create_listener django
+
 
 //
 secure l'interface web
