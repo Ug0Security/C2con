@@ -23,6 +23,8 @@ cp -r listener-templates/pylistener/ /tmp/$2/
 sed -i "s/ENDPOINT/$2/" /tmp/$2/pylistener/pylistener/urls.py
 sed -i "s/MODE/$3/" /tmp/$2/pylistener/pylistener/urls.py
 sed -i "s/RESPONSE/$4/" /tmp/$2/pylistener/pylistener/urls.py
+rand=$(cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-128} | head -n 1)
+sed -i "s/RANDOMIZED_ON_INSTALL/$rand/" /tmp/$2/pylistener/pylistener/urls.py
 echo """
 ---CONFIG---
 Endpoint: $2
