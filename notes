@@ -1,29 +1,11 @@
 --[Before running]--
 
--- Change apache private tmp file to false if you plan to use the php listener
+-- Change apache private tmp file to false if you plan to use the php listener or the web interface
 vim /lib/systemd/system/apache2.service
 systemctl daemon-reload
 service apache restart
 
--- create and chmod tmp files and uploads folder (or C2/agents/listeners wont be able to write)
-
-touch /tmp/C2CON-cmds.txt
-chmod 777 /tmp/C2CON-cmds.txt
-touch /tmp/C2CON-ping.txt
-chmod 777 /tmp/C2CON-ping.txt
-touch /tmp/C2CON-res.txt
-chmod 777  /tmp/C2CON-res.txt
-touch /tmp/C2CON-temp
-chmod 777  /tmp/C2CON-temp
-touch /tmp/C2CON-temping
-chmod 777  /tmp/C2CON-temping
-mkdir /tmp/C2CON-uploads
-chmod 777  /tmp/C2CON-uploads/
-
--- Copy web folder to /var/www/html if you plan to use the php web interface
-
-cp web/ /var/www/html -r 
-
+Run install.sh
 
 
 
