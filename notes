@@ -1,6 +1,6 @@
---[Before running]--
+--[OPTIONAL : Before running]--
 
--- Change apache private tmp file to false if you plan to use the php listener or the web interface
+Change apache private tmp file to false if you plan to use the php listener or the web interface
 
 vim /lib/systemd/system/apache2.service
 systemctl daemon-reload
