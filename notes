@@ -1,21 +1,83 @@
 --[Before running]--
 
 -- Change apache private tmp file to false if you plan to use the php listener or the web interface
+
 vim /lib/systemd/system/apache2.service
 systemctl daemon-reload
 service apache2 restart
 
-Run install.sh
+
+--[Installation]--
+
+git clone https://github.com/Ug0Security/C2con/
+cd C2con/
+bash install.sh
+cd scripts/
+bash C2.sh
 
 
+
+--[create listener]--
+
+action = create
+what = listener
+type = python or php
+endpoint = what you want (need to fit the agent)
+Mode Param = what you want (need to fit the agent)
+Response Param = what you want (need to fit the agent)
+Listener Port =  what you want (need to fit the agent)
+
+The listener is launched upon creation
+
+--[create agent]--
+
+action = create
+what = agent
+type = shell or python or go or  powershell
+filename = what you want
+endpoint = what you want (need to fit the listener)
+Mode Param = what you want (need to fit the listener)
+endpoint = what you want (need to fit the listener)
+Response Param = what you want (need to fit the listener)
+Listener Port =  what you want (need to fit the listener)
+
+the created agent is stored in /tmp/$filename.
+
+--[Run agent]--
+
+bash /tmp/hehe.sh 123 http://127.0.0.1:8888
+python /tmp/hehe.py 123 http://127.0.0.1:8888
+go run /tmp/hehe.go 123 http://127.0.0.1:8888
+powershell -noexit -nologo -executionpolicy bypass -File .\hehe.ps1 123 http://127.0.0.1:8888
+
+--[Run commands on connected agent]--
+
+action = run
+agent  = agentID
+Ze juice = $Cmd_To_Run
+
+Wait up to 10 second to get the output
+
+--[Upload file to agent]--
+action = upload
+agent  = agentID
+URL = Url with file to upload
+Path = Path to store the file (need to be writable by the agent)
+
+
+--[download file from agent]--
+action = download
+agent  = agentID
+Ze File = File to download (need to be readable by the agent)
+
+--[Clear output files]--
+action = create
+files = res or cmds
 
 //to do//
 
-
-
-//
-create listener / create agent via web ?
 secure l'interface web
+create listener / create agent via web ?
 
 //
 
