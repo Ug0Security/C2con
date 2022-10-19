@@ -1,3 +1,5 @@
+Absolutly not FUD, not OPSEC, not whatever.. it just werks.. shhh
+
 --[OPTIONAL : Before running]--
 
 Change apache private tmp file to false if you plan to use the php listener or the web interface
