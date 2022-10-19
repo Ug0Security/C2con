@@ -15,7 +15,7 @@ chmod 666 /tmp/C2CON-temp.txt
 touch /tmp/C2CON-temping.txt
 chmod 666 /tmp/C2CON-temping.txt
 
-echo --Copying web admin interface--
+echo --Installing web admin interface--
 mkdir /var/www/html/C2CON/
 mkdir /var/www/html/C2CON/admin/
 cp web/admin/readres.php /var/www/html/C2CON/admin/readres.php
