@@ -15,8 +15,8 @@ chmod 666 /tmp/C2CON-temp.txt
 touch /tmp/C2CON-temping.txt
 chmod 666 /tmp/C2CON-temping.txt
 
-mkdir /tmp/C2CON-upload
-chmod 666 /tmp/C2CON-upload
+mkdir /tmp/C2CON-uploads
+chmod 666 /tmp/C2CON-uploads/
 
 echo --Installing web admin interface--
 mkdir /var/www/html/C2CON/
