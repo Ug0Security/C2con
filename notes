@@ -39,7 +39,6 @@ type = shell or python or go or  powershell
 filename = what you want
 endpoint = what you want (need to fit the listener)
 Mode Param = what you want (need to fit the listener)
-endpoint = what you want (need to fit the listener)
 Response Param = what you want (need to fit the listener)
 Listener Port =  what you want (need to fit the listener)
 
