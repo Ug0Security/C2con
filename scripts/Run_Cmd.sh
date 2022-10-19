@@ -46,22 +46,45 @@ sleep 2
 clear
 
 
-elif [ "$what" = "listener" ]; then
-echo "Endpoint ?"
-read endpoint
-echo "Mode Param ?"
-read mode_param
-echo "Reponse Param ?"
-read resp_param
-echo "Creating and deploying listener"
-bash create_listener.sh $endpoint $mode_param $resp_param
-sleep 2
-clear
 
+elif [ "$what" = "listener" ]; then
+	echo "Type ?"
+	read type
+	if [ "$type" = "php" ]; then
+		echo "Endpoint ?"
+		read endpoint
+		echo "Mode Param ?"
+		read mode_param
+		echo "Reponse Param ?"
+		read resp_param
+		echo "Creating and deploying listener"
+		bash create_listener.sh $type $endpoint $mode_param $resp_param
+		sleep 2
+		clear
+
+	elif [ "$type" = "python" ]; then
+		echo "Endpoint ?"
+		read endpoint
+		echo "Mode Param ?"
+		read mode_param
+		echo "Reponse Param ?"
+		read resp_param
+		echo "Listener Port ?"
+		read port
+		bash create_listener.sh $type $endpoint $mode_param $resp_param $port&
+		sleep 2
+		clear
+	else
+		echo "Create listener python or php"
+		sleep 2
+		clear
+	fi	
 else
 echo "Create agent or listener"
 sleep 2
 clear
+
+
 fi
 
 
