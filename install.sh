@@ -1,5 +1,5 @@
 
-echo --Create tmp file and setting files permissions--
+echo --Create tmp files and setting files permissions--
 touch /tmp/C2CON-ping.txt
 chmod 666 /tmp/C2CON-ping.txt
 
