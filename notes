@@ -79,8 +79,17 @@ files = res or cmds
 
 --[MISC]--
 
-- To properly exit the C2 close tmux session (ctrl + b then 1 then y ---- Dont blame me blame tmux)
-- To kill listener : netstat find the pid of the listener then run :  kill $PID
+- To properly exit the C2 close  thetmux session (ctrl + b then 1 then y ---- Dont blame me, blame tmux)
+- To kill listener : netstat -laputen, find the listener's PID then run :  kill $PID
+- To remove everything :
+
+rm -rf C2con/
+rm -rf /tmp/C2CON-*
+rm -rf /var/www/html/C2CON
+
+rm -rf /tmp/$Listeners_Endpoints
+rm -rf /tmp/$Agents_Filenames
+
 
 //to do//
 
