@@ -1,3 +1,5 @@
+yep not a readme.md ... conformist...  -_-
+
 Absolutly not FUD, not OPSEC, not whatever.. it just werks.. shhh.. c'est tout con ;)
 
 --[OPTIONAL : Before running]--
@@ -81,7 +83,8 @@ files = res or cmds
 --[MISC]--
 
 - To properly exit the C2 close  thetmux session (ctrl + b then 1 then y ---- Dont blame me, blame tmux)
-- To kill listener : netstat -laputen, find the listener's PID then run :  kill $PID
+- if you quit the C2 with CTRL+C just type up arrow and Enter to restart
+- To kill listeners : netstat -laputen, find the listener's PID then run :  kill $PID
 - To remove everything :
 
 rm -rf C2con/
@@ -94,6 +97,7 @@ rm -rf /tmp/$Agents_Filenames
 
 //to do//
 
+kill listener
 secure l'interface web
 create listener / create agent via web ?
 
