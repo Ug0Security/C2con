@@ -245,7 +245,7 @@ setTimeout(reloadping, 5000);
 
 function reloadcmds() {
 var c = document.getElementById('cmds');
-c.src = f.src;
+c.src = c.src;
 setTimeout(reloadcmds, 5000);
   
 }
