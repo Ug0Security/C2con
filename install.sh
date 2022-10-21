@@ -9,11 +9,11 @@ chmod 666 /tmp/C2CON-res.txt
 touch /tmp/C2CON-cmds.txt
 chmod 666 /tmp/C2CON-cmds.txt
 
-touch /tmp/C2CON-temp.txt
-chmod 666 /tmp/C2CON-temp.txt
+touch /tmp/C2CON-temp
+chmod 666 /tmp/C2CON-temp
 
-touch /tmp/C2CON-temping.txt
-chmod 666 /tmp/C2CON-temping.txt
+touch /tmp/C2CON-temping
+chmod 666 /tmp/C2CON-temping
 
 mkdir /tmp/C2CON-uploads
 chmod 666 /tmp/C2CON-uploads/
