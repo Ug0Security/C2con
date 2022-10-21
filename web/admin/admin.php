@@ -245,7 +245,7 @@ setTimeout(reloadping, 5000);
 
 function reloadcmds() {
 var c = document.getElementById('cmds');
-</ifra.src = f.src;
+c.src = f.src;
 setTimeout(reloadcmds, 5000);
   
 }
