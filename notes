@@ -29,9 +29,9 @@ type = python or php
 endpoint = what you want (need to fit the agent)
 Mode Param = what you want (need to fit the agent)
 Response Param = what you want (need to fit the agent)
-Listener Port =  what you want (need to fit the agent)
+Listener Port  =  what you want (need to fit the agent)
 
-The listener is launched upon creation
+The listener is launched upon creation, Listener Port option is for python only, for php it depends on your apache config
 
 --[Create Agent]--
 
