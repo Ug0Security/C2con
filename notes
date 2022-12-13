@@ -1,6 +1,8 @@
 yep not a readme.md ... conformist...  -_-
 
 Absolutly not FUD, not OPSEC, not whatever.. it just werks.. shhh.. un C2 sur le principe c'est tout con ;)
+Should run directly on a recent kali vm.
+Here some deps if you want to try to run it somewhere else : python3.x, django, tmux, php, apache
 
 --[OPTIONAL : Before running]--
 
