@@ -6,6 +6,9 @@ chmod 666 /tmp/C2CON-ping.txt
 touch /tmp/C2CON-res.txt
 chmod 666 /tmp/C2CON-res.txt
 
+touch /tmp/C2CON-templistener
+chmod 666 /tmp/C2CON-templistener
+
 touch /tmp/C2CON-listener.txt
 chmod 666 /tmp/C2CON-listener.txt
 
