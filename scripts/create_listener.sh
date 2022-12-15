@@ -15,7 +15,7 @@ Response Param : $4
 Exposed on Apache port
 """
 sleep 2
-
+clear
 
 elif [ $1 == "python" ]; then
 mkdir /tmp/$2
@@ -34,10 +34,9 @@ Exposed on Port : $5
 """
 python /tmp/$2/pylistener/manage.py runserver 0.0.0.0:$5 > /dev/nul 2>&1 &
 sleep 2
-echo "Listener python on 0.0.0.0:$5 (PID: $(netstat -laputen | grep 0.0.0.0:$5 | cut -d ' '  -f 65 | cut -d '/' -f 1))" >> /tmp/C2CON-listener.txt
-
+echo "Listener python on 0.0.0.0:$5/$2 (PID : $(lsof -t -i :$5 -s tcp:LISTEN))" >> /tmp/C2CON-listener.txt
 else
 echo "No Listener of this type"
 sleep 2
-
+clear
 fi
