@@ -133,5 +133,10 @@ $down= (Invoke-WebRequest -Uri $urldl -OutFile $path)
 
 
 }
+if ($act -eq "kill")
+{
+Remove-Item -Path $MyInvocation.MyCommand.Source
+exit
+}
 }
 }
