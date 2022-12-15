@@ -14,7 +14,7 @@ Mode Param : $3
 Response Param : $4
 Exposed on Apache port
 """
-sleep2
+sleep 2
 clear
 
 elif [ $1 == "python" ]; then
@@ -38,6 +38,6 @@ echo "Listener python on 0.0.0.0:$5 (PID: $(netstat -laputen | grep 0.0.0.0:$5 |
 clear
 else
 echo "No Listener of this type"
-sleep2
+sleep 2
 clear
 fi
