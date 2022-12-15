@@ -24,6 +24,16 @@ echo "Task to $agent => $action $cmd" >> /tmp/C2CON-res.txt
 sleep 2
 clear
 
+elif [ "$action" = "kill" ]; then
+echo "Listener PID ?"
+read PID
+kill $PID
+cat /tmp/C2CON-listener.txt | grep -v ".$PID." > /tmp/C2CON-templistener
+cat /tmp/C2CON-templistener > /tmp/C2CON-listener.txt 
+echo "Listener with $PID killed"
+sleep 2
+clear
+
 
 elif [ "$action" = "create" ]; then
 echo "What ?"
