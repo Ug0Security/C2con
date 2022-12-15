@@ -99,9 +99,8 @@ rm -rf /tmp/$Agents_Filenames
 
 //to do//
 
-kill listener
 secure l'interface web
-create listener / create agent via web ?
+create listener / create agent via web ? meh
 
 //
 
