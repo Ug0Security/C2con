@@ -28,6 +28,13 @@ elif [ "$action" = "kill" ]; then
 echo "Listener PID ?"
 read PID
 kill $PID
+listname=$(cat /tmp/C2CON-listener.txt| grep ".$PID."  | cut -d '/' -f 2 | cut -d ' ' -f 1)
+if [ -z "$listname" ]
+then
+echo "Can't find the listener folder"
+else
+rm -rf /tmp/$listname
+fi
 cat /tmp/C2CON-listener.txt | grep -v ".$PID." > /tmp/C2CON-templistener
 cat /tmp/C2CON-templistener > /tmp/C2CON-listener.txt 
 echo "Listener with $PID killed"
