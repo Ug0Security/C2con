@@ -87,7 +87,7 @@ elif [ "$what" = "listener" ]; then
 		sleep 2
 		clear
 
-	elif [ "$type" = "python" ]; then
+	elif [ "$type" = "python_http" ]; then
 		echo "Endpoint ?"
 		read endpoint
 		echo "Mode Param ?"
