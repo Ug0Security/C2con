@@ -37,7 +37,7 @@ rm -rf /tmp/$listname
 fi
 cat /tmp/C2CON-listener.txt | grep -v ".$PID." > /tmp/C2CON-templistener
 cat /tmp/C2CON-templistener > /tmp/C2CON-listener.txt 
-echo "Listener with $PID killed"
+echo "Listener with PID $PID killed"
 sleep 2
 clear
 
