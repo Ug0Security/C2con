@@ -136,15 +136,28 @@ read file
 if [ "$file" = "cmds" ]; then
 echo "" > /tmp/C2CON-cmds.txt
 sleep 2
-echo "Clearing cmds.txt"
+echo "Clearing /tmp/C2CON-cmds.txt"
 clear
-fi
 
-if [ "$file" = "res" ]; then
+
+elif [ "$file" = "res" ]; then
 echo "" > /tmp/C2CON-res.txt
 sleep 2
-echo "Clearing res.txt"
+echo "Clearing C2CON-res.txt"
 clear
+
+elif [ "$file" = "listeners" ]; then
+echo "" > /tmp/C2CON-listener.txt
+sleep 2
+echo "Clearing C2CON-listener.txt"
+clear
+
+elif [ "$file" = "ping" ]; then
+echo "Clearing C2CON-ping.txt"
+echo "" > /tmp/C2CON-ping.txt
+sleep 2
+clear
+
 else
 echo "Unknown file"
 fi
