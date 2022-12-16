@@ -30,7 +30,7 @@ bash C2.sh
 
 action = create
 what = listener
-type = python or php
+type = python_http, python_https or php
 endpoint = what you want (need to fit the agent)
 Mode Param = what you want (need to fit the agent)
 Response Param = what you want (need to fit the agent)
@@ -47,7 +47,6 @@ filename = what you want
 endpoint = what you want (need to fit the listener)
 Mode Param = what you want (need to fit the listener)
 Response Param = what you want (need to fit the listener)
-Listener Port =  what you want (need to fit the listener)
 
 the created agent is stored in /tmp/$filename.
 
