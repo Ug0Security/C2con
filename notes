@@ -95,7 +95,7 @@ agent  = agentID
 
 --[MISC]--
 
-- To properly exit the C2 close  thetmux session (ctrl + b then 1 then y ---- Dont blame me, blame tmux)
+- To properly exit the C2 close the tmux session (ctrl + b then 1 then y ---- Dont blame me, blame tmux)
 - if you quit the C2 with CTRL+C just type up arrow and Enter to restart
 - To remove everything :
 
