@@ -99,6 +99,21 @@ elif [ "$what" = "listener" ]; then
 		bash create_listener.sh $type $endpoint $mode_param $resp_param $port&
 		sleep 2
 		clear
+		
+	elif [ "$type" = "python_https" ]; then
+		echo "Endpoint ?"
+		read endpoint
+		echo "Mode Param ?"
+		read mode_param
+		echo "Reponse Param ?"
+		read resp_param
+		echo "Listener Port ?"
+		read port
+		bash create_listener.sh $type $endpoint $mode_param $resp_param $port&
+		sleep 2
+		clear			
+		
+		
 	else
 		echo "Create listener python or php"
 		sleep 2
