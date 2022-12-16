@@ -115,7 +115,7 @@ elif [ "$what" = "listener" ]; then
 		
 		
 	else
-		echo "Create listener python or php"
+		echo "Create listener python_http, python_https or php"
 		sleep 2
 		clear
 	fi	
