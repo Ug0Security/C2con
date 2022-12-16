@@ -158,6 +158,15 @@ echo "" > /tmp/C2CON-ping.txt
 sleep 2
 clear
 
+elif [ "$file" = "all" ]; then
+echo "Clearing all txt"
+echo "" > /tmp/C2CON-ping.txt
+echo "" > /tmp/C2CON-listener.txt
+echo "" > /tmp/C2CON-res.txt
+echo "" > /tmp/C2CON-cmds.txt
+sleep 2
+clear
+
 else
 echo "Unknown file"
 sleep 2
