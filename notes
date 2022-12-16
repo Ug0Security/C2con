@@ -88,7 +88,7 @@ action = kill_lis
 Listener PID= Listener PID
 
 
---[Kill Agent]--
+--[Kill Agent]-- (powershell agent only)
 action = kill_ag
 agent  = agentID
 
