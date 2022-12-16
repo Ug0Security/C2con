@@ -12,7 +12,7 @@ tmux split-window -h
 tmux split-window -v
 tmux split-window -h
 tmux send-keys -t 1 "while true;echo \"\"\"
-+-+-+ +-+-+-+-+-+
+ +-+-+ +-+-+-+-+-+
  |Z|e| |J|u|i|c|e|
  +-+-+ +-+-+-+-+-+
 \"\"\"; do tail '/tmp/C2CON-res.txt' 2>/dev/null; sleep 1; clear; done" C-m
@@ -22,12 +22,12 @@ tmux send-keys -t 2 "clear;while true;echo \"\"\"
  +-+-+-+-+
 \"\"\"; do cat '/tmp/C2CON-ping.txt'; sleep 3; clear; done" C-m
 tmux send-keys -t 3 "clear;while true;echo \"\"\"
-+-+-+-+-+-+
+ +-+-+-+-+-+
  |T|a|s|k|s|
  +-+-+-+-+-+
 \"\"\"; do tail  '/tmp/C2CON-cmds.txt' 2>/dev/null; sleep 1; clear; done" C-m
 tmux send-keys -t 4 "clear;while true;echo \"\"\"
-+-+-+-+-+-+-+-+-+-+
+ +-+-+-+-+-+-+-+-+-+
  |L|i|s|t|e|n|e|r|s|
  +-+-+-+-+-+-+-+-+-+
 \"\"\"; do tail  '/tmp/C2CON-listener.txt' 2>/dev/null; sleep 1; clear; done" C-m
