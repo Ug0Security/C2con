@@ -80,13 +80,23 @@ Ze File = File to download (need to be readable by the agent)
 --[Clear Output Files]--
 
 action = clear
-files = res or cmds
+files = res, cmds, ping, listener, all
+
+--[Kill Listener]--
+
+action = kill_lis
+Listener PID= Listener PID
+
+
+--[Kill Agent]--
+action = kill_ag
+agent  = agentID
+
 
 --[MISC]--
 
 - To properly exit the C2 close  thetmux session (ctrl + b then 1 then y ---- Dont blame me, blame tmux)
 - if you quit the C2 with CTRL+C just type up arrow and Enter to restart
-- To kill listeners : netstat -laputen, find the listener's PID then run :  kill $PID
 - To remove everything :
 
 rm -rf C2con/
