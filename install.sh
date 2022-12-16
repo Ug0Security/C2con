@@ -24,6 +24,10 @@ chmod 666 /tmp/C2CON-temping
 mkdir /tmp/C2CON-uploads
 chmod 666 /tmp/C2CON-uploads/
 
+echo --Installing Django-extension & Werkzeug--
+
+pip install django-extensions Werkzeug
+
 echo --Installing web admin interface--
 mkdir /var/www/html/C2CON/
 mkdir /var/www/html/C2CON/admin/
