@@ -160,6 +160,8 @@ clear
 
 else
 echo "Unknown file"
+sleep 2
+clear
 fi
 
 else
