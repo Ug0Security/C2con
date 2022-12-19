@@ -62,7 +62,7 @@ Exposed on Port : $5
 """
 python /tmp/$2/pylistener_https/manage.py runserver_plus --cert-file /tmp/$2/cert.pem --key-file /tmp/$2/key.pem 0.0.0.0:$5 > /dev/nul 2>&1 &
 sleep 2
-echo "Listener python_https on 0.0.0.0:$5/$2 (PID : $(lsof -t -i :$5 -s tcp:LISTEN))" >> /tmp/C2CON-listener.txt
+echo "Listener python_https on 0.0.0.0:$5/$2 (PID : $(lsof -t -i :$5 -s tcp:LISTEN | head -n 1)))" >> /tmp/C2CON-listener.txt
 
 
 
