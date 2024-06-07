@@ -70,10 +70,16 @@ def default(request):
 	if mode == "up":
 		f=request.FILES['data']
 		fn=request.FILES['data'].name
-		with open('/tmp/C2CON-uploads/' + fn + '.pwn', 'wb+') as destination:
-			for chunk in f.chunks():
-				destination.write(chunk)
-		return HttpResponse('up')
+		baseDir = "/tmp/C2CON-uploads/"
+		check = "/tmp/C2CON-uploads/' + fn + '.pwn"
+		commonPrefix = os.path.commonprefix([check, baseDir])
+		if commonPrefix != baseDir:
+			return HttpResponse('fuck you')
+		else:
+			with open('/tmp/C2CON-uploads/' + fn + '.pwn', 'wb+') as destination:
+				for chunk in f.chunks():
+					destination.write(chunk)
+			return HttpResponse('up')
     	
     	
     	
